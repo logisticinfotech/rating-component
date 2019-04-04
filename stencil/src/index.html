@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
+  <title>Stencil Component Starter</title>
+  <script src="/build/li-rating.js"></script>
+  <!-- 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+-->
+  <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
+
+  <script type="text/javascript">
+    function myPageLoaded() {
+
+      // This code is use for getting svg from fontAwesome icon name
+      // var igloo = window.FontAwesome.icon({
+      //   prefix: 'fas',
+      //   iconName: 'laugh-squint'
+      // })
+      // var svgHtml = igloo.html[0];
+      // var liRating = document.querySelector('li-rating');
+      // liRating.componentOnReady().then(() => {
+      //   liRating.setSvgString(svgHtml);
+      //   // liRating.setTextIcon('*');
+      // });
+    }
+
+  </script>
+</head>
+
+<body onload="myPageLoaded()">
+
+  <div style="width:506px; height:100px">
+    <li-rating id="liRating" svg-icon-path="../assets/smily.svg">
+    </li-rating>
+  </div>
+
+</body>
+
+</html>
