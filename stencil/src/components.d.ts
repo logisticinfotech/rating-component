@@ -18,7 +18,8 @@ export namespace Components {
     'fontSize': any;
     'opacity': any;
     'setSvgString': (svgHtml: any) => void;
-    'stroke': string;
+    'strokeColor': string;
+    'strokeWidth': string;
     'svgIconPath': any;
     'textIcon': any;
     'totalIcons': any;
@@ -29,7 +30,8 @@ export namespace Components {
     'fontSize'?: any;
     'onOnChangeRating'?: (event: CustomEvent) => void;
     'opacity'?: any;
-    'stroke'?: string;
+    'strokeColor'?: string;
+    'strokeWidth'?: string;
     'svgIconPath'?: any;
     'textIcon'?: any;
     'totalIcons'?: any;

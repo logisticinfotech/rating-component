@@ -8,16 +8,20 @@ import { Component, State, Prop, Event, EventEmitter, Method } from '@stencil/co
 
 export class LiRating {
 
+    private meterTag?: HTMLMeterElement;
+
+
     // This properties used in all Icon.
     @Prop() color: string = '';
-    @Prop() opacity: any = 0.5;
+    @Prop() opacity: any = 0.4;
     @Prop() totalIcons: any = 5;
     @Prop() currentRate: any = 0;
     @Prop() svgIconPath: any = '';
-    @Prop() textIcon: any = '';
+    @Prop() textIcon: any = '★';
 
     // This properties is only use for TextIcon.
-    @Prop() stroke: string = '';
+    @Prop() strokeColor: string = '';
+    @Prop() strokeWidth: string = '';
     @Prop() fontSize: any = 75;
 
     @State() currentRateParent: any = 0;
@@ -35,6 +39,7 @@ export class LiRating {
                     onClick={(e) => this.changeRating(e)}
                     onMouseOut={() => this.setCurrentValue()}
                     onMouseMove={(e) => this.onMouseHover(e)}
+                    ref={el => this.meterTag = el as HTMLMeterElement}
                 />
             </div >
         )
@@ -78,7 +83,8 @@ export class LiRating {
         svgText.setAttribute("x", "50%");
         svgText.setAttribute("y", "65%");
         svgText.setAttribute("fill", this.color);
-        svgText.setAttribute("stroke", this.stroke);
+        svgText.setAttribute("stroke", this.strokeColor);
+        svgText.setAttribute("stroke-width", this.strokeWidth);
         svgText.setAttribute("font-size", this.fontSize);
         svgText.setAttribute("text-anchor", "middle");
         svgText.setAttribute("dominant-baseline", "middle");
@@ -95,9 +101,9 @@ export class LiRating {
         // console.log('setTextIcon Method calls', svgIconPath);
         var fileRequest = new XMLHttpRequest();
         var self = this;
-        fileRequest.onreadystatechange = function() {
+        fileRequest.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                // console.log('DATA = >', this.responseText);
+                console.log('DATA = >', this.responseText);
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
                 svgElmtMain.setAttribute("color", self.color)
@@ -117,15 +123,14 @@ export class LiRating {
         var selectedSvg = svgElmtMain.cloneNode(true);
         var unSelectedSvg = svgElmtMain.cloneNode(true);
 
-        var meterTag = document.querySelector('meter');
-        var fullWidth = meterTag.offsetWidth;
+        var fullWidth = this.meterTag.offsetWidth;
 
         unSelectedSvg['setAttribute']('fill-opacity', this.opacity);
         unSelectedSvg['setAttribute']('width', (fullWidth / this.totalIcons));
         selectedSvg['setAttribute']('width', (fullWidth / this.totalIcons));
 
-        meterTag.style.setProperty('--selected-icon-bg-url', `url('data:image/svg+xml,` + selectedSvg['outerHTML'] + `') 0 / auto 100%`);
-        meterTag.style.setProperty('--unselected-icon-bg-url', `url('data:image/svg+xml,` + unSelectedSvg['outerHTML'] + `') 0 / auto 100%`);
+        this.meterTag.style.setProperty('--selected-icon-bg-url', `url('data:image/svg+xml,` + selectedSvg['outerHTML'] + `') 0 / auto 100%`);
+        this.meterTag.style.setProperty('--unselected-icon-bg-url', `url('data:image/svg+xml,` + unSelectedSvg['outerHTML'] + `') 0 / auto 100%`);
     }
 
     // This method calls when mouse hover event fire.
