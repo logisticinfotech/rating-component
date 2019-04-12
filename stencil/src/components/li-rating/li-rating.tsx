@@ -10,9 +10,8 @@ export class LiRating {
 
     private meterTag?: HTMLMeterElement;
 
-
     // This properties used in all Icon.
-    @Prop() color: string = '';
+    @Prop() color: string = 'black';
     @Prop() opacity: any = 0.4;
     @Prop() totalIcons: any = 5;
     @Prop() currentRate: any = 0;
@@ -20,8 +19,8 @@ export class LiRating {
     @Prop() textIcon: any = '★';
 
     // This properties is only use for TextIcon.
-    @Prop() strokeColor: string = '';
-    @Prop() strokeWidth: string = '';
+    @Prop() strokeColor: string = 'black';
+    @Prop() strokeWidth: string = '3';
     @Prop() fontSize: any = 75;
 
     @State() currentRateParent: any = 0;

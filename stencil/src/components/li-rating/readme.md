@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property      | Attribute       | Description | Type     | Default |
-| ------------- | --------------- | ----------- | -------- | ------- |
-| `color`       | `color`         |             | `string` | `''`    |
-| `currentRate` | `current-rate`  |             | `any`    | `0`     |
-| `fontSize`    | `font-size`     |             | `any`    | `75`    |
-| `opacity`     | `opacity`       |             | `any`    | `0.4`   |
-| `strokeColor` | `stroke-color`  |             | `string` | `''`    |
-| `strokeWidth` | `stroke-width`  |             | `string` | `''`    |
-| `svgIconPath` | `svg-icon-path` |             | `any`    | `''`    |
-| `textIcon`    | `text-icon`     |             | `any`    | `'★'`   |
-| `totalIcons`  | `total-icons`   |             | `any`    | `5`     |
+| Property      | Attribute       | Description | Type     | Default   |
+| ------------- | --------------- | ----------- | -------- | --------- |
+| `color`       | `color`         |             | `string` | `'black'` |
+| `currentRate` | `current-rate`  |             | `any`    | `0`       |
+| `fontSize`    | `font-size`     |             | `any`    | `75`      |
+| `opacity`     | `opacity`       |             | `any`    | `0.4`     |
+| `strokeColor` | `stroke-color`  |             | `string` | `'black'` |
+| `strokeWidth` | `stroke-width`  |             | `string` | `'3'`     |
+| `svgIconPath` | `svg-icon-path` |             | `any`    | `''`      |
+| `textIcon`    | `text-icon`     |             | `any`    | `'★'`     |
+| `totalIcons`  | `total-icons`   |             | `any`    | `5`       |
 
 
 ## Events
