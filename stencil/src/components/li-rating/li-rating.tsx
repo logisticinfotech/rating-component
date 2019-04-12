@@ -20,7 +20,7 @@ export class LiRating {
 
     // This properties is only use for TextIcon.
     @Prop() strokeColor: string = 'black';
-    @Prop() strokeWidth: string = '3';
+    @Prop() strokeWidth: string = '0';
     @Prop() fontSize: any = 75;
 
     @State() currentRateParent: any = 0;

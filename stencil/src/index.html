@@ -5,36 +5,126 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
-  <script src="/build/li-rating.js"></script>
-  <!-- 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
--->
+
+  <!-- stencil component library -->
+  <script src="../www/build/li-rating.js"></script>
+
+  <!-- font-awesome library -->
   <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
 
   <script type="text/javascript">
     function myPageLoaded() {
-
       // This code is use for getting svg from fontAwesome icon name
-      // var igloo = window.FontAwesome.icon({
-      //   prefix: 'fas',
-      //   iconName: 'laugh-squint'
-      // })
-      // var svgHtml = igloo.html[0];
+      var laughSquint = window.FontAwesome.icon({
+        prefix: 'fas',
+        iconName: 'laugh-squint'
+      })
+      var svgHtml = laughSquint.html[0];
       // var liRating = document.querySelector('li-rating');
-      // liRating.componentOnReady().then(() => {
-      //   liRating.setSvgString(svgHtml);
-      //   // liRating.setTextIcon('*');
-      // });
+      var liRating = document.getElementById('liRatingFontAwesome');
+
+      liRating.componentOnReady().then(() => {
+        liRating.setSvgString(svgHtml);
+      });
+
+      document.getElementById('liRatingFontAwesome').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingFontAwesome').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingTextIcon').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingTextIcon').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingDefault').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingDefault').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingTextIconColor').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingTextIconColor').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingTextIconStroke').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingTextIconStroke').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingSvgPath').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingSvgPath').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingSvgPathColor').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingSvgPathColor').setAttribute('current-rate', event.detail);
+      });
     }
 
   </script>
+
+  <style>
+    .li-rating-wrapper {
+      width: 506px;
+      height: 120px;
+      margin: 0 auto;
+      padding: 15px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+  </style>
 </head>
 
 <body onload="myPageLoaded()">
 
-  <div style="width:506px; height:100px">
-    <li-rating id="liRating" svg-icon-path="../assets/smily.svg">
+  <!-- example of default li-rating -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of default li-rating component :</label>
+    <li-rating id="liRatingDefault"></li-rating>
+  </div>
+
+  <!-- example of text icon with color -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of text icon with color :</label>
+    <li-rating id="liRatingTextIconColor" text-icon="♣" color="rgb(0, 102, 255)" font-size="100">
+    </li-rating>
+  </div>
+
+  <!-- example of text icon with color & stroke -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of text icon with stroke color and width :</label>
+    <li-rating id="liRatingTextIconStroke" text-icon="♥" font-size="100" stroke-color="rgb(179, 0, 89)" stroke-width="3"
+      color="rgb(255, 0, 128)">
+    </li-rating>
+  </div>
+
+  <!-- example of text icon with total icons -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of text icons with number of icons :</label>
+    <li-rating id="liRatingTextIcon" text-icon="♠" total-icons="10">
+    </li-rating>
+  </div>
+
+  <!-- example of font-awesome svg icon with color -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of font-awesome SVG icon with color :</label>
+    <li-rating id="liRatingFontAwesome" total-icons="10" color="rgb(0, 153, 0)">
+    </li-rating>
+  </div>
+
+  <!-- example of svg icon from given path -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of SVG icon from given path :</label>
+    <li-rating id="liRatingSvgPath" svg-icon-path="assets/smily.svg">
+    </li-rating>
+  </div>
+
+  <!-- example of svg icon from given path with color -->
+  <div class="li-rating-wrapper">
+    <label>=> Example of SVG icon from given path and change in total-icons and color:</label>
+    <li-rating id="liRatingSvgPathColor" svg-icon-path="assets/smily.svg" total-icons="10" color="rgb(10, 51, 3)">
     </li-rating>
   </div>
 

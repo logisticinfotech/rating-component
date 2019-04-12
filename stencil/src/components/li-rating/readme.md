@@ -14,7 +14,7 @@
 | `fontSize`    | `font-size`     |             | `any`    | `75`      |
 | `opacity`     | `opacity`       |             | `any`    | `0.4`     |
 | `strokeColor` | `stroke-color`  |             | `string` | `'black'` |
-| `strokeWidth` | `stroke-width`  |             | `string` | `'3'`     |
+| `strokeWidth` | `stroke-width`  |             | `string` | `'0'`     |
 | `svgIconPath` | `svg-icon-path` |             | `any`    | `''`      |
 | `textIcon`    | `text-icon`     |             | `any`    | `'★'`     |
 | `totalIcons`  | `total-icons`   |             | `any`    | `5`       |
