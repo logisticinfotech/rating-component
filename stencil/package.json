@@ -1,7 +1,21 @@
 {
-  "name": "stencil",
-  "version": "0.0.1",
-  "description": "Stencil Component Starter",
+  "name": "@logisticinfotech/rating-component",
+  "version": "1.0.0",
+  "description": "rating-component is web component based on meter tag, mostly supported with css and custom svg built with stencil.",
+  "keywords": [
+    "rating component",
+    "web component",
+    "rating",
+    "rating meter",
+    "rate meter",
+    "stencil",
+    "svg rating component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/logisticinfotech/li-rating"
+  },
+  "homepage": "https://logisticinfotech.com/blog/li-rating-component",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
   "unpkg": "dist/ionic.js",
@@ -15,11 +29,11 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "copy-license": "cp ./LICENSE ./dist/ionic4-datepicker",
-    "copy-readme": "cp ./README.md ./dist/ionic4-datepicker",
+    "copy-license": "cp ./LICENSE ./dist",
+    "copy-readme": "cp ./README.md ./dist",
     "copy-files": "npm run copy-license && npm run copy-readme",
-    "npm_pack": "cd dist/ionic4-datepicker && npm pack",
-    "package": "npm run build && npm run copy-files && npm run npm_pack"
+    "npm_pack": "cd dist && npm pack",
+    "package": "npm run build && npm run copy-files"
   },
   "dependencies": {},
   "devDependencies": {
