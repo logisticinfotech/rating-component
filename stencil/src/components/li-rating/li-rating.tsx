@@ -1,4 +1,4 @@
-import { Component, State, Prop, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, State, Prop, Event, EventEmitter, Method, Watch } from '@stencil/core';
 
 @Component({
     tag: 'li-rating',
@@ -21,7 +21,13 @@ export class LiRating {
     // This properties is only use for TextIcon.
     @Prop() strokeColor: string = 'black';
     @Prop() strokeWidth: string = '0';
-    @Prop() fontSize: any = 75;
+
+    @Prop() fontSize: any = 45;
+    @Watch('fontSize')
+    watchHandler(newValue: boolean, oldValue: boolean) {
+      console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
+      this.refresh();
+    }
 
     @State() currentRateParent: any = 0;
     @State() maxRating: number = 100;
@@ -40,7 +46,7 @@ export class LiRating {
                     // onMouseMove={(e) => this.onMouseHover(e)}
                     ref={el => this.meterTag = el as HTMLMeterElement}
                 />
-            </div >
+             </div >
         )
     }
 
@@ -52,11 +58,15 @@ export class LiRating {
 
     componentDidLoad() {
         // console.log('component did load calls');
-        if (this.svgIconPath) {
-            this.getSvgFromPath(this.svgIconPath);
-        } else if (this.textIcon) {
-            this.setTextIcon(this.textIcon);
-        }
+        this.refresh();
+    }
+
+    refresh() {
+      if (this.svgIconPath) {
+          this.getSvgFromPath();
+      } else if (this.textIcon) {
+          this.setTextIcon();
+      }
     }
 
     // This method used for set FontAwesome SVG image.
@@ -73,7 +83,7 @@ export class LiRating {
     }
 
     // This methos used fot TEXT set in SVG.
-    setTextIcon(textIcon) {
+    setTextIcon() {
         // console.log('setTextIcon Method calls', textIcon);
         var svgElmt = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElmt.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -88,7 +98,7 @@ export class LiRating {
         svgText.setAttribute("text-anchor", "middle");
         svgText.setAttribute("dominant-baseline", "middle");
 
-        svgText.innerHTML = textIcon;
+        svgText.innerHTML = this.textIcon;
 
         svgElmt.appendChild(svgText);
 
@@ -96,7 +106,7 @@ export class LiRating {
     }
 
     // This methos used for getting SVG file from give PATH.
-    getSvgFromPath(svgIconPath) {
+    getSvgFromPath() {
         // console.log('setTextIcon Method calls', svgIconPath);
         var fileRequest = new XMLHttpRequest();
         var self = this;
@@ -112,7 +122,7 @@ export class LiRating {
                 self.setElementAsSelectedUnselected(svgElmtMain);
             }
         }
-        fileRequest.open("GET", svgIconPath, true);
+        fileRequest.open("GET", this.svgIconPath, true);
         fileRequest.send();
     }
 

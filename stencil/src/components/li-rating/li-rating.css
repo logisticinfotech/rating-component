@@ -1,6 +1,3 @@
-#hideSection {
-  display: none;
-}
 
 :root {
   /* :root is a clever way of saying "the outer-most element" */
@@ -8,22 +5,17 @@
   --unselected-icon-bg-url: green; */
 }
 
-li-rating {
+li-rating .rating-meter-container {
   height: 100%;
-  display: block;
-  padding: 2px;
+  width: 100%;
 }
 
-.rating-meter-container {
-  height: 100%;
-}
-
-meter {
+li-rating meter {
   width: 100%;
   height: 100%;
 }
 
-meter::-webkit-meter-bar {
+li-rating meter::-webkit-meter-bar {
   width: 100%;
   height: 100%;
   background: var(--unselected-icon-bg-url);
@@ -34,7 +26,7 @@ meter::-webkit-meter-bar {
   width: 50%; /* var(--selectedHover-width); */
 /* } */
 
-meter::-webkit-meter-optimum-value {
+li-rating meter::-webkit-meter-optimum-value {
   background: var(--selected-icon-bg-url);
 }
 
