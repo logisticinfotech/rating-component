@@ -29,6 +29,13 @@ meter::-webkit-meter-bar {
   background: var(--unselected-icon-bg-url);
 }
 
+/* meter::-webkit-meter-bar:hover {
+  background: var(--selectedHover-icon-bg-url);
+  width: 50%; /* var(--selectedHover-width); */
+/* } */
+
 meter::-webkit-meter-optimum-value {
   background: var(--selected-icon-bg-url);
 }
+
+

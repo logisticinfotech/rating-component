@@ -12,7 +12,7 @@ export class LiRating {
 
     // This properties used in all Icon.
     @Prop() color: string = 'black';
-    @Prop() opacity: any = 0.4;
+    @Prop() opacity: any = 0.3;
     @Prop() totalIcons: any = 5;
     @Prop() currentRate: any = 0;
     @Prop() svgIconPath: any = '';
@@ -36,8 +36,8 @@ export class LiRating {
                     max={this.maxRating}
                     value={this.currentRateParent}
                     onClick={(e) => this.changeRating(e)}
-                    onMouseOut={() => this.setCurrentValue()}
-                    onMouseMove={(e) => this.onMouseHover(e)}
+                    // onMouseOut={() => this.setCurrentValue()}
+                    // onMouseMove={(e) => this.onMouseHover(e)}
                     ref={el => this.meterTag = el as HTMLMeterElement}
                 />
             </div >
@@ -118,7 +118,6 @@ export class LiRating {
 
     // This common funcation is used for set SVG as selected or unselected SVG.
     setElementAsSelectedUnselected(svgElmtMain) {
-        // console.log('setElementAsSelectedUnselected method calls', svgElmtMain);
         var selectedSvg = svgElmtMain.cloneNode(true);
         var unSelectedSvg = svgElmtMain.cloneNode(true);
 
@@ -126,39 +125,28 @@ export class LiRating {
 
         unSelectedSvg['setAttribute']('fill-opacity', this.opacity);
         unSelectedSvg['setAttribute']('width', (fullWidth / this.totalIcons));
+
         selectedSvg['setAttribute']('width', (fullWidth / this.totalIcons));
 
-        this.meterTag.style.setProperty('--selected-icon-bg-url', `url('data:image/svg+xml,` + selectedSvg['outerHTML'] + `') 0 / auto 100%`);
         this.meterTag.style.setProperty('--unselected-icon-bg-url', `url('data:image/svg+xml,` + unSelectedSvg['outerHTML'] + `') 0 / auto 100%`);
-    }
-
-    // This method calls when mouse hover event fire.
-    onMouseHover(e) {
-        // console.log('mouse move event calls', e);
-        var valueHover = this.calculateCurrentRating(e);
-        this.currentRateParent = valueHover;
+        this.meterTag.style.setProperty('--selected-icon-bg-url', `url('data:image/svg+xml,` + selectedSvg['outerHTML'] + `') 0 / auto 100%`);
     }
 
     // This method calls when user clicks on li-rating and getting for value of rating.
     changeRating(e) {
-        // console.log('update rate event calls', e);
         var newRate = this.calculateCurrentRating(e);
+        this.currentRateParent = newRate;
+
         console.log('VALUE =>', newRate.toFixed(2));
         this.onChangeRating.emit(newRate.toFixed(2));
     }
 
-    // This methos calculates the current rating value. 
+    // This methos calculates the current rating value.
     calculateCurrentRating(event) {
         // console.log('calculate current rate calls =>', event);
         var offsetX = event.offsetX;
         var maxVal = parseInt(event.target.getAttribute('max'), 10);
         var newRate = (offsetX / event.target.clientWidth) * maxVal;
         return newRate;
-    }
-
-    // This method sets default currentRate.
-    setCurrentValue() {
-        // console.log('set current value method calls');
-        this.currentRateParent = this.currentRate;
     }
 }

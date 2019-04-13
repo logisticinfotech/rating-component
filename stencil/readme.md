@@ -1,5 +1,5 @@
 
-# Ionic4 DatePicker
+# Logisticinfotech Rating Component
 
 Please check this blog for documentation [this link](https://logisticinfotech.com/blog/li-rating-component)
 
