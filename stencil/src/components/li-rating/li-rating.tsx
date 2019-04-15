@@ -224,9 +224,9 @@ export class LiRating {
         var newRate = (offsetX / event.target.clientWidth) * maxVal;
         let newRatingValue;
         if ((this.fillMode).toLowerCase() === 'full') {
-            newRatingValue = Math.round(newRate);
+            newRatingValue = Math.ceil(newRate);
         } else if ((this.fillMode).toLowerCase() === 'half') {
-            newRatingValue = (newRate % 1) > 0.50 ? Math.round(newRate) : (parseInt(newRate + '') + 0.50);
+            newRatingValue = (newRate % 1) > 0.50 ? Math.ceil(newRate) : (Math.floor(newRate) + 0.50);
         } else {
             newRatingValue = newRate.toFixed(2);
         }
