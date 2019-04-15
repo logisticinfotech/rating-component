@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
     <title>Logistic Infotech Rating Component</title>
 
-    <!-- stencil component library -->
+    <!-- li-rating component library -->
     <script src="https://unpkg.com/@logisticinfotech/rating-component@1.0.0/dist/li-rating.js"></script>
 
     <!-- font-awesome library -->
@@ -27,19 +27,19 @@
                 liRating.setSvgString(svgHtml);
             });
 
-            document.getElementById('liRatingFontAwesome').addEventListener('onChangeRating', event => {
-                // console.log('VALUE HTML=>', event.detail);
-                document.getElementById('liRatingFontAwesome').setAttribute('current-rate', event.detail);
-            });
-
-            document.getElementById('liRatingTextIcon').addEventListener('onChangeRating', event => {
-                // console.log('VALUE HTML=>', event.detail);
-                document.getElementById('liRatingTextIcon').setAttribute('current-rate', event.detail);
-            });
-
             document.getElementById('liRatingDefault').addEventListener('onChangeRating', event => {
                 // console.log('VALUE HTML=>', event.detail);
                 document.getElementById('liRatingDefault').setAttribute('current-rate', event.detail);
+            });
+
+            document.getElementById('liRatingFull').addEventListener('onChangeRating', event => {
+                // console.log('VALUE HTML=>', event.detail);
+                document.getElementById('liRatingFull').setAttribute('current-rate', event.detail);
+            });
+
+            document.getElementById('liRatingHalf').addEventListener('onChangeRating', event => {
+                // console.log('VALUE HTML=>', event.detail);
+                document.getElementById('liRatingHalf').setAttribute('current-rate', event.detail);
             });
 
             document.getElementById('liRatingTextIconColor').addEventListener('onChangeRating', event => {
@@ -50,6 +50,16 @@
             document.getElementById('liRatingTextIconStroke').addEventListener('onChangeRating', event => {
                 // console.log('VALUE HTML=>', event.detail);
                 document.getElementById('liRatingTextIconStroke').setAttribute('current-rate', event.detail);
+            });
+
+            document.getElementById('liRatingTextIcon').addEventListener('onChangeRating', event => {
+                // console.log('VALUE HTML=>', event.detail);
+                document.getElementById('liRatingTextIcon').setAttribute('current-rate', event.detail);
+            });
+
+            document.getElementById('liRatingFontAwesome').addEventListener('onChangeRating', event => {
+                // console.log('VALUE HTML=>', event.detail);
+                document.getElementById('liRatingFontAwesome').setAttribute('current-rate', event.detail);
             });
 
             document.getElementById('liRatingSvgPath').addEventListener('onChangeRating', event => {
@@ -86,18 +96,41 @@
 
 <body onload="myPageLoaded()">
 
-    <!-- exampledefault li-rating -->
+    <!-- example default li-rating -->
     <div class="li-rating-wrapper">
         <label>Default li-rating component :</label>
         <div class="rating-holder">
             <div style="width: 150px; height: 100%;">
-                <li-rating id="liRatingDefault" font-size="45" total-icons="3" stroke-color="rgb(255, 102, 229)"
-                    stroke-width="1" color="rgb(255, 153, 255)"></li-rating>
+                <li-rating id="liRatingDefault" font-size="45" total-icons="3" stroke-color="#FF66E5" stroke-width="1"
+                    color="#FF99FF"></li-rating>
             </div>
         </div>
     </div>
 
-    <!-- exampletext icon with color -->
+    <!-- example default li-rating with fill mode full-->
+    <div class="li-rating-wrapper">
+        <label>Default li-rating component with fill-mode: full</label>
+        <div class="rating-holder">
+            <div style="width: 150px; height: 100%;">
+                <li-rating id="liRatingFull" font-size="45" text-icon="♬" total-icons="3" color="#660066"
+                    fill-mode="full">
+                </li-rating>
+            </div>
+        </div>
+    </div>
+
+    <!-- example default li-rating with fill mode half-->
+    <div class="li-rating-wrapper">
+        <label>Default li-rating component with fill-mode: half</label>
+        <div class="rating-holder">
+            <div style="width: 150px; height: 100%;">
+                <li-rating id="liRatingHalf" font-size="60" text-icon="❖" total-icons="3" color="rgb(0, 0, 153)"
+                    fill-mode="half"></li-rating>
+            </div>
+        </div>
+    </div>
+
+    <!-- example text icon with color -->
     <div class="li-rating-wrapper">
         <label>Text icon with color :</label>
         <div class="rating-holder">
@@ -109,7 +142,7 @@
         </div>
     </div>
 
-    <!-- exampletext icon with color & stroke -->
+    <!-- example text icon with color & stroke -->
     <div class="li-rating-wrapper">
         <label>Text icon with stroke color and width :</label>
         <div class="rating-holder">
@@ -121,7 +154,7 @@
         </div>
     </div>
 
-    <!-- exampletext icon with total icons -->
+    <!-- example text icon with total icons -->
     <div class="li-rating-wrapper">
         <label>Text icons with number of icons :</label>
         <div class="rating-holder">
@@ -133,7 +166,7 @@
         </div>
     </div>
 
-    <!-- examplefont-awesome svg icon with color -->
+    <!-- example font-awesome svg icon with color -->
     <div class="li-rating-wrapper">
         <label>Font-awesome SVG icon with color :</label>
         <div class="rating-holder">
@@ -144,7 +177,7 @@
         </div>
     </div>
 
-    <!-- examplesvg icon from given path -->
+    <!-- example svg icon from given path -->
     <div class="li-rating-wrapper">
         <label>SVG icon from path :</label>
         <div class="rating-holder">
@@ -155,7 +188,7 @@
         </div>
     </div>
 
-    <!-- examplesvg icon from given path with color -->
+    <!-- example svg icon from given path with color -->
     <div class="li-rating-wrapper">
         <label>SVG icon from path :</label>
         <div class="rating-holder">

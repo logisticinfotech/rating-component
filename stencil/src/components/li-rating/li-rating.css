@@ -1,8 +1,5 @@
-
 :root {
   /* :root is a clever way of saying "the outer-most element" */
-  /* --selected-icon-bg-url: yellow;
-  --unselected-icon-bg-url: green; */
 }
 
 li-rating .rating-meter-container {
@@ -21,13 +18,6 @@ li-rating meter::-webkit-meter-bar {
   background: var(--unselected-icon-bg-url);
 }
 
-/* meter::-webkit-meter-bar:hover {
-  background: var(--selectedHover-icon-bg-url);
-  width: 50%; /* var(--selectedHover-width); */
-/* } */
-
 li-rating meter::-webkit-meter-optimum-value {
   background: var(--selected-icon-bg-url);
 }
-
-

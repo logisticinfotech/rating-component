@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Logistic Infotech Rating Component</title>
 
-  <!-- stencil component library -->
+  <!-- li-rating component library-->
   <script src="/build/li-rating.js"></script>
 
   <!-- font-awesome library -->
@@ -27,19 +27,19 @@
         liRating.setSvgString(svgHtml);
       });
 
-      document.getElementById('liRatingFontAwesome').addEventListener('onChangeRating', event => {
-        // console.log('VALUE HTML=>', event.detail);
-        document.getElementById('liRatingFontAwesome').setAttribute('current-rate', event.detail);
-      });
-
-      document.getElementById('liRatingTextIcon').addEventListener('onChangeRating', event => {
-        // console.log('VALUE HTML=>', event.detail);
-        document.getElementById('liRatingTextIcon').setAttribute('current-rate', event.detail);
-      });
-
       document.getElementById('liRatingDefault').addEventListener('onChangeRating', event => {
         // console.log('VALUE HTML=>', event.detail);
         document.getElementById('liRatingDefault').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingFull').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingFull').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingHalf').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingHalf').setAttribute('current-rate', event.detail);
       });
 
       document.getElementById('liRatingTextIconColor').addEventListener('onChangeRating', event => {
@@ -50,6 +50,16 @@
       document.getElementById('liRatingTextIconStroke').addEventListener('onChangeRating', event => {
         // console.log('VALUE HTML=>', event.detail);
         document.getElementById('liRatingTextIconStroke').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingTextIcon').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingTextIcon').setAttribute('current-rate', event.detail);
+      });
+
+      document.getElementById('liRatingFontAwesome').addEventListener('onChangeRating', event => {
+        // console.log('VALUE HTML=>', event.detail);
+        document.getElementById('liRatingFontAwesome').setAttribute('current-rate', event.detail);
       });
 
       document.getElementById('liRatingSvgPath').addEventListener('onChangeRating', event => {
@@ -93,8 +103,30 @@
     <label>Default li-rating component :</label>
     <div class="rating-holder">
       <div style="width: 150px; height: 100%;">
-        <li-rating id="liRatingDefault" font-size="45" total-icons="3" stroke-color="rgb(255, 102, 229)"
-          stroke-width="1" color="rgb(255, 153, 255)"></li-rating>
+        <li-rating id="liRatingDefault" font-size="45" total-icons="3" stroke-color="#FF66E5" stroke-width="1"
+          color="#FF99FF"></li-rating>
+      </div>
+    </div>
+  </div>
+
+  <!-- example default li-rating with fill mode full-->
+  <div class="li-rating-wrapper">
+    <label>Default li-rating component with fill-mode: full</label>
+    <div class="rating-holder">
+      <div style="width: 150px; height: 100%;">
+        <li-rating id="liRatingFull" font-size="45" text-icon="♬" total-icons="3" color="#660066" fill-mode="full">
+        </li-rating>
+      </div>
+    </div>
+  </div>
+
+  <!-- example default li-rating with fill mode half-->
+  <div class="li-rating-wrapper">
+    <label>Default li-rating component with fill-mode: half</label>
+    <div class="rating-holder">
+      <div style="width: 150px; height: 100%;">
+        <li-rating id="liRatingHalf" font-size="60" text-icon="❖" total-icons="3" color="rgb(0, 0, 153)"
+          fill-mode="half"></li-rating>
       </div>
     </div>
   </div>

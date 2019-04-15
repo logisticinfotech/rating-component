@@ -15,6 +15,7 @@ export namespace Components {
   interface LiRating {
     'color': string;
     'currentRate': any;
+    'fillMode': string;
     'fontSize': any;
     'opacity': any;
     'setSvgString': (svgHtml: any) => void;
@@ -27,6 +28,7 @@ export namespace Components {
   interface LiRatingAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'currentRate'?: any;
+    'fillMode'?: string;
     'fontSize'?: any;
     'onOnChangeRating'?: (event: CustomEvent) => void;
     'opacity'?: any;

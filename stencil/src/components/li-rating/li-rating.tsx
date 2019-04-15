@@ -14,7 +14,15 @@ export class LiRating {
     @Prop() color: string = 'black';
     @Watch('color')
     watchHandlerForColor(newValue: boolean, oldValue: boolean) {
+        this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
         console.log('color old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
+    @Prop() fillMode: string = 'precise';
+    @Watch('fillMode')
+    watchHandlerForFillMode(newValue: boolean, oldValue: boolean) {
+        console.log('fillMode old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
@@ -28,6 +36,7 @@ export class LiRating {
     @Prop() totalIcons: any = 5;
     @Watch('totalIcons')
     watchHandlerForTotalIcons(newValue: boolean, oldValue: boolean) {
+        this.maxRating = (Number(this.totalIcons));
         console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
@@ -35,6 +44,7 @@ export class LiRating {
     @Prop() currentRate: any = 0;
     @Watch('currentRate')
     watchHandlerForCurrentRate(newValue: boolean, oldValue: boolean) {
+        this.currentRateParent = this.currentRate;
         console.log('currentRate old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
@@ -57,6 +67,7 @@ export class LiRating {
     @Prop() strokeColor: string = 'black';
     @Watch('strokeColor')
     watchHandlerForStrokeColor(newValue: boolean, oldValue: boolean) {
+        this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
         console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
@@ -78,6 +89,8 @@ export class LiRating {
     @State() currentRateParent: any = 0;
     @State() maxRating: number = 100;
     @State() fontAwesomeSvgIcon: string;
+    @State() colorInside: string;
+    @State() strokeColorInside: string;
 
     @Event() onChangeRating: EventEmitter;
 
@@ -101,6 +114,8 @@ export class LiRating {
         // console.log('component will load calls');
         this.currentRateParent = this.currentRate;
         this.maxRating = (Number(this.totalIcons));
+        this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
+        this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
     }
 
     componentDidLoad() {
@@ -127,7 +142,7 @@ export class LiRating {
         this.fontAwesomeSvgIcon = svgHtml;
         var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svgElmtMain.setAttribute("color", this.color)
+        svgElmtMain.setAttribute("color", this.colorInside)
 
         svgElmtMain.innerHTML = svgHtml;
 
@@ -143,8 +158,8 @@ export class LiRating {
         var svgText = document.createElement("text");
         svgText.setAttribute("x", "50%");
         svgText.setAttribute("y", "65%");
-        svgText.setAttribute("fill", this.color);
-        svgText.setAttribute("stroke", this.strokeColor);
+        svgText.setAttribute("fill", this.colorInside);
+        svgText.setAttribute("stroke", this.strokeColorInside);
         svgText.setAttribute("stroke-width", this.strokeWidth);
         svgText.setAttribute("font-size", this.fontSize);
         svgText.setAttribute("text-anchor", "middle");
@@ -166,7 +181,7 @@ export class LiRating {
             if (this.readyState == 4 && this.status == 200) {
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-                svgElmtMain.setAttribute("color", self.color)
+                svgElmtMain.setAttribute("color", self.colorInside)
 
                 svgElmtMain.innerHTML = this.responseText;
 
@@ -195,11 +210,10 @@ export class LiRating {
 
     // This method calls when user clicks on li-rating and getting for value of rating.
     changeRating(e) {
-        var newRate = this.calculateCurrentRating(e);
-        this.currentRateParent = newRate;
-
-        console.log('VALUE =>', newRate.toFixed(2));
-        this.onChangeRating.emit(newRate.toFixed(2));
+        var ratingValue = this.calculateCurrentRating(e);
+        this.currentRateParent = ratingValue;
+        console.log('VALUE =>', ratingValue);
+        this.onChangeRating.emit(ratingValue);
     }
 
     // This methos calculates the current rating value.
@@ -208,6 +222,26 @@ export class LiRating {
         var offsetX = event.offsetX;
         var maxVal = parseInt(event.target.getAttribute('max'), 10);
         var newRate = (offsetX / event.target.clientWidth) * maxVal;
-        return newRate;
+        let newRatingValue;
+        if ((this.fillMode).toLowerCase() === 'full') {
+            newRatingValue = Math.round(newRate);
+        } else if ((this.fillMode).toLowerCase() === 'half') {
+            newRatingValue = (newRate % 1) > 0.50 ? Math.round(newRate) : (parseInt(newRate + '') + 0.50);
+        } else {
+            newRatingValue = newRate.toFixed(2);
+        }
+        return Number(newRatingValue);
+    }
+
+    // This method converts HexColor into RGB
+    convertHexToRGB(hex) {
+        if (typeof hex !== 'string' || hex[0] !== '#') return null; // or return 'transparent'
+
+        const stringValues = (hex.length === 4)
+            ? [hex.slice(1, 2), hex.slice(2, 3), hex.slice(3, 4)].map(n => `${n}${n}`)
+            : [hex.slice(1, 3), hex.slice(3, 5), hex.slice(5, 7)];
+        const intValues = stringValues.map(n => parseInt(n, 16));
+
+        return `rgb(${intValues.join(', ')})`;
     }
 }
