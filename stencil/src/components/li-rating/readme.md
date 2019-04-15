@@ -11,7 +11,7 @@
 | ------------- | --------------- | ----------- | -------- | --------- |
 | `color`       | `color`         |             | `string` | `'black'` |
 | `currentRate` | `current-rate`  |             | `any`    | `0`       |
-| `fontSize`    | `font-size`     |             | `any`    | `75`      |
+| `fontSize`    | `font-size`     |             | `any`    | `45`      |
 | `opacity`     | `opacity`       |             | `any`    | `0.3`     |
 | `strokeColor` | `stroke-color`  |             | `string` | `'black'` |
 | `strokeWidth` | `stroke-width`  |             | `string` | `'0'`     |

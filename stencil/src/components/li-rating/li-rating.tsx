@@ -12,25 +12,72 @@ export class LiRating {
 
     // This properties used in all Icon.
     @Prop() color: string = 'black';
+    @Watch('color')
+    watchHandlerForColor(newValue: boolean, oldValue: boolean) {
+        console.log('color old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() opacity: any = 0.3;
+    @Watch('opacity')
+    watchHandlerForOpacity(newValue: boolean, oldValue: boolean) {
+        console.log('opacity old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() totalIcons: any = 5;
+    @Watch('totalIcons')
+    watchHandlerForTotalIcons(newValue: boolean, oldValue: boolean) {
+        console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() currentRate: any = 0;
+    @Watch('currentRate')
+    watchHandlerForCurrentRate(newValue: boolean, oldValue: boolean) {
+        console.log('currentRate old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() svgIconPath: any = '';
+    @Watch('svgIconPath')
+    watchHandlerForSvgIconPath(newValue: boolean, oldValue: boolean) {
+        console.log('svgIconPath old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() textIcon: any = '★';
+    @Watch('textIcon')
+    watchHandlerForTextIcon(newValue: boolean, oldValue: boolean) {
+        console.log('textIcon old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
 
     // This properties is only use for TextIcon.
     @Prop() strokeColor: string = 'black';
+    @Watch('strokeColor')
+    watchHandlerForStrokeColor(newValue: boolean, oldValue: boolean) {
+        console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() strokeWidth: string = '0';
+    @Watch('strokeWidth')
+    watchHandlerForStrokeWidth(newValue: boolean, oldValue: boolean) {
+        console.log('strokeWidth old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
+    }
 
     @Prop() fontSize: any = 45;
     @Watch('fontSize')
-    watchHandler(newValue: boolean, oldValue: boolean) {
-      console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
-      this.refresh();
+    watchHandlerForFontSize(newValue: boolean, oldValue: boolean) {
+        console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
+        this.refresh();
     }
 
     @State() currentRateParent: any = 0;
     @State() maxRating: number = 100;
+    @State() fontAwesomeSvgIcon: string;
 
     @Event() onChangeRating: EventEmitter;
 
@@ -46,7 +93,7 @@ export class LiRating {
                     // onMouseMove={(e) => this.onMouseHover(e)}
                     ref={el => this.meterTag = el as HTMLMeterElement}
                 />
-             </div >
+            </div >
         )
     }
 
@@ -62,17 +109,22 @@ export class LiRating {
     }
 
     refresh() {
-      if (this.svgIconPath) {
-          this.getSvgFromPath();
-      } else if (this.textIcon) {
-          this.setTextIcon();
-      }
+        if (!this.fontAwesomeSvgIcon) {
+            if (this.svgIconPath) {
+                this.getSvgFromPath();
+            } else if (this.textIcon) {
+                this.setTextIcon();
+            }
+        } else {
+            this.setSvgString(this.fontAwesomeSvgIcon);
+        }
     }
 
     // This method used for set FontAwesome SVG image.
     @Method()
     setSvgString(svgHtml) {
         // console.log('setSvgString Method calls', svgHtml);
+        this.fontAwesomeSvgIcon = svgHtml;
         var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
         svgElmtMain.setAttribute("color", this.color)
@@ -112,7 +164,6 @@ export class LiRating {
         var self = this;
         fileRequest.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log('DATA = >', this.responseText);
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
                 svgElmtMain.setAttribute("color", self.color)

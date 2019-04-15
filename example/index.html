@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
-    <title>Stencil Component Starter</title>
+    <title>Logistic Infotech Rating Component</title>
 
     <!-- stencil component library -->
     <script src="https://unpkg.com/@logisticinfotech/rating-component@1.0.0/dist/li-rating.js"></script>
@@ -15,11 +15,11 @@
     <script type="text/javascript">
         function myPageLoaded() {
             // This code is use for getting svg from fontAwesome icon name
-            var laughSquint = window.FontAwesome.icon({
+            var smileBeam = window.FontAwesome.icon({
                 prefix: 'fas',
-                iconName: 'laugh-squint'
+                iconName: 'smile-beam'
             })
-            var svgHtml = laughSquint.html[0];
+            var svgHtml = smileBeam.html[0];
             // var liRating = document.querySelector('li-rating');
             var liRating = document.getElementById('liRatingFontAwesome');
 
@@ -66,64 +66,105 @@
 
     <style>
         .li-rating-wrapper {
-            width: 506px;
-            height: 120px;
-            margin: 0 auto;
-            padding: 15px;
+            width: 100%;
+            height: 80px;
+            margin: 5px;
             border-bottom: 1px solid #e6e6e6;
+        }
+
+        .li-rating-wrapper label {
+            font-family: sans-serif;
+            color: lightslategray;
+        }
+
+        .rating-holder {
+            width: 80%;
+            height: 62px;
         }
     </style>
 </head>
 
 <body onload="myPageLoaded()">
 
-    <!-- example of default li-rating -->
+    <!-- exampledefault li-rating -->
     <div class="li-rating-wrapper">
-        <label>=> Example of default li-rating component :</label>
-        <li-rating id="liRatingDefault"></li-rating>
+        <label>Default li-rating component :</label>
+        <div class="rating-holder">
+            <div style="width: 150px; height: 100%;">
+                <li-rating id="liRatingDefault" font-size="45" total-icons="3" stroke-color="rgb(255, 102, 229)"
+                    stroke-width="1" color="rgb(255, 153, 255)"></li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of text icon with color -->
+    <!-- exampletext icon with color -->
     <div class="li-rating-wrapper">
-        <label>=> Example of text icon with color :</label>
-        <li-rating id="liRatingTextIconColor" text-icon="♣" color="rgb(0, 102, 255)" font-size="100">
-        </li-rating>
+        <label>Text icon with color :</label>
+        <div class="rating-holder">
+            <div style="width: 170px; height: 100%;">
+                <li-rating id="liRatingTextIconColor" text-icon="♣" total-icons="4" stroke-color="rgb(2, 55, 176)"
+                    stroke-width="1" color="rgb(0, 102, 255)" font-size="56">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of text icon with color & stroke -->
+    <!-- exampletext icon with color & stroke -->
     <div class="li-rating-wrapper">
-        <label>=> Example of text icon with stroke color and width :</label>
-        <li-rating id="liRatingTextIconStroke" text-icon="♥" font-size="100" stroke-color="rgb(179, 0, 89)"
-            stroke-width="3" color="rgb(255, 0, 128)">
-        </li-rating>
+        <label>Text icon with stroke color and width :</label>
+        <div class="rating-holder">
+            <div style="width: 190px; height: 100%;">
+                <li-rating id="liRatingTextIconStroke" text-icon="♥" font-size="56" stroke-color="rgb(179, 0, 89)"
+                    stroke-width="1" color="rgb(255, 0, 128)">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of text icon with total icons -->
+    <!-- exampletext icon with total icons -->
     <div class="li-rating-wrapper">
-        <label>=> Example of text icons with number of icons :</label>
-        <li-rating id="liRatingTextIcon" text-icon="♠" total-icons="10">
-        </li-rating>
+        <label>Text icons with number of icons :</label>
+        <div class="rating-holder">
+            <div style="width: 220px; height: 100%;">
+                <li-rating id="liRatingTextIcon" text-icon="♠" stroke-color="rgb(7, 8, 9)" stroke-width="1"
+                    font-size="55" total-icons="6">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of font-awesome svg icon with color -->
+    <!-- examplefont-awesome svg icon with color -->
     <div class="li-rating-wrapper">
-        <label>=> Example of font-awesome SVG icon with color :</label>
-        <li-rating id="liRatingFontAwesome" total-icons="10" color="rgb(0, 153, 0)">
-        </li-rating>
+        <label>Font-awesome SVG icon with color :</label>
+        <div class="rating-holder">
+            <div style="width: 260px; height: 100%;">
+                <li-rating id="liRatingFontAwesome" total-icons="7" color="rgb(0, 153, 0)">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of svg icon from given path -->
+    <!-- examplesvg icon from given path -->
     <div class="li-rating-wrapper">
-        <label>=> Example of SVG icon from given path :</label>
-        <li-rating id="liRatingSvgPath" svg-icon-path="assets/smily.svg">
-        </li-rating>
+        <label>SVG icon from path :</label>
+        <div class="rating-holder">
+            <div style="width: 290px; height: 40px;">
+                <li-rating id="liRatingSvgPath" total-icons="8" svg-icon-path="assets/smily.svg">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
-    <!-- example of svg icon from given path with color -->
+    <!-- examplesvg icon from given path with color -->
     <div class="li-rating-wrapper">
-        <label>=> Example of SVG icon from given path and change in total-icons and color:</label>
-        <li-rating id="liRatingSvgPathColor" svg-icon-path="assets/smily.svg" total-icons="10" color="rgb(10, 51, 3)">
-        </li-rating>
+        <label>SVG icon from path :</label>
+        <div class="rating-holder">
+            <div style="width: 320px; height: 100%;">
+                <li-rating id="liRatingSvgPathColor" svg-icon-path="assets/grin-hearts.svg" total-icons="9"
+                    color="rgb(249, 5, 20)">
+                </li-rating>
+            </div>
+        </div>
     </div>
 
 </body>
