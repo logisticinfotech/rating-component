@@ -9,11 +9,23 @@ import { Component, State, Prop, Event, EventEmitter, Method, Watch } from '@ste
 export class LiRating {
 
     private meterTag?: HTMLMeterElement;
+    @Event() input: EventEmitter;
+
+    @Prop({
+        mutable: true,
+        reflectToAttr: true
+    }) value: string = '0';
+    @Watch('value')
+    watchHandlerForValue(newValue: string, oldValue: boolean) {
+        console.log('color old : ' + oldValue + ' New value: ' + newValue);
+        this.value = newValue;
+        this.refresh();
+    }
 
     // This properties used in all Icon.
     @Prop() color: string = 'black';
     @Watch('color')
-    watchHandlerForColor(newValue: boolean, oldValue: boolean) {
+    watchHandlerForColor(newValue: string, oldValue: string) {
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
         console.log('color old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
@@ -21,44 +33,36 @@ export class LiRating {
 
     @Prop() fillMode: string = 'precise';
     @Watch('fillMode')
-    watchHandlerForFillMode(newValue: boolean, oldValue: boolean) {
+    watchHandlerForFillMode(newValue: string, oldValue: string) {
         console.log('fillMode old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() opacity: any = 0.3;
     @Watch('opacity')
-    watchHandlerForOpacity(newValue: boolean, oldValue: boolean) {
+    watchHandlerForOpacity(newValue: number, oldValue: number) {
         console.log('opacity old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() totalIcons: any = 5;
     @Watch('totalIcons')
-    watchHandlerForTotalIcons(newValue: boolean, oldValue: boolean) {
+    watchHandlerForTotalIcons(newValue: number, oldValue: number) {
         this.maxRating = (Number(this.totalIcons));
         console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
-    @Prop() currentRate: any = 0;
-    @Watch('currentRate')
-    watchHandlerForCurrentRate(newValue: boolean, oldValue: boolean) {
-        this.currentRateParent = this.currentRate;
-        console.log('currentRate old : ' + oldValue + ' New value: ' + newValue);
-        this.refresh();
-    }
-
     @Prop() svgIconPath: any = '';
     @Watch('svgIconPath')
-    watchHandlerForSvgIconPath(newValue: boolean, oldValue: boolean) {
+    watchHandlerForSvgIconPath(newValue: string, oldValue: string) {
         console.log('svgIconPath old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() textIcon: any = '★';
     @Watch('textIcon')
-    watchHandlerForTextIcon(newValue: boolean, oldValue: boolean) {
+    watchHandlerForTextIcon(newValue: string, oldValue: string) {
         console.log('textIcon old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
@@ -66,7 +70,7 @@ export class LiRating {
     // This properties is only use for TextIcon.
     @Prop() strokeColor: string = 'black';
     @Watch('strokeColor')
-    watchHandlerForStrokeColor(newValue: boolean, oldValue: boolean) {
+    watchHandlerForStrokeColor(newValue: string, oldValue: string) {
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
         console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
@@ -74,14 +78,14 @@ export class LiRating {
 
     @Prop() strokeWidth: string = '0';
     @Watch('strokeWidth')
-    watchHandlerForStrokeWidth(newValue: boolean, oldValue: boolean) {
+    watchHandlerForStrokeWidth(newValue: string, oldValue: string) {
         console.log('strokeWidth old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() fontSize: any = 45;
     @Watch('fontSize')
-    watchHandlerForFontSize(newValue: boolean, oldValue: boolean) {
+    watchHandlerForFontSize(newValue: number, oldValue: number) {
         console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
@@ -92,7 +96,6 @@ export class LiRating {
     @State() colorInside: string;
     @State() strokeColorInside: string;
 
-    @Event() onChangeRating: EventEmitter;
 
     render() {
         return (
@@ -100,7 +103,7 @@ export class LiRating {
                 <meter
                     min={0}
                     max={this.maxRating}
-                    value={this.currentRateParent}
+                    value={this.value}
                     onClick={(e) => this.changeRating(e)}
                     // onMouseOut={() => this.setCurrentValue()}
                     // onMouseMove={(e) => this.onMouseHover(e)}
@@ -112,7 +115,6 @@ export class LiRating {
 
     componentWillLoad() {
         // console.log('component will load calls');
-        this.currentRateParent = this.currentRate;
         this.maxRating = (Number(this.totalIcons));
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
@@ -210,10 +212,9 @@ export class LiRating {
 
     // This method calls when user clicks on li-rating and getting for value of rating.
     changeRating(e) {
-        var ratingValue = this.calculateCurrentRating(e);
-        this.currentRateParent = ratingValue;
-        console.log('VALUE =>', ratingValue);
-        this.onChangeRating.emit(ratingValue);
+        this.value = this.calculateCurrentRating(e).toString();
+        console.log('VALUE =>', this.value);
+        this.input.emit();
     }
 
     // This methos calculates the current rating value.

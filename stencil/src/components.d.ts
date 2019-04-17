@@ -14,7 +14,6 @@ export namespace Components {
 
   interface LiRating {
     'color': string;
-    'currentRate': any;
     'fillMode': string;
     'fontSize': any;
     'opacity': any;
@@ -24,19 +23,20 @@ export namespace Components {
     'svgIconPath': any;
     'textIcon': any;
     'totalIcons': any;
+    'value': string;
   }
   interface LiRatingAttributes extends StencilHTMLAttributes {
     'color'?: string;
-    'currentRate'?: any;
     'fillMode'?: string;
     'fontSize'?: any;
-    'onOnChangeRating'?: (event: CustomEvent) => void;
+    'onInput'?: (event: CustomEvent) => void;
     'opacity'?: any;
     'strokeColor'?: string;
     'strokeWidth'?: string;
     'svgIconPath'?: any;
     'textIcon'?: any;
     'totalIcons'?: any;
+    'value'?: string;
   }
 }
 

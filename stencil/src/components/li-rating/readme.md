@@ -10,7 +10,6 @@
 | Property      | Attribute       | Description | Type     | Default     |
 | ------------- | --------------- | ----------- | -------- | ----------- |
 | `color`       | `color`         |             | `string` | `'black'`   |
-| `currentRate` | `current-rate`  |             | `any`    | `0`         |
 | `fillMode`    | `fill-mode`     |             | `string` | `'precise'` |
 | `fontSize`    | `font-size`     |             | `any`    | `45`        |
 | `opacity`     | `opacity`       |             | `any`    | `0.3`       |
@@ -19,6 +18,7 @@
 | `svgIconPath` | `svg-icon-path` |             | `any`    | `''`        |
 | `textIcon`    | `text-icon`     |             | `any`    | `'★'`       |
 | `totalIcons`  | `total-icons`   |             | `any`    | `5`         |
+| `value`       | `value`         |             | `number` | `0`         |
 
 
 ## Events
