@@ -1,6 +1,6 @@
 {
   "name": "@logisticinfotech/rating-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "rating-component is web component based on meter tag, mostly supported with css and custom svg built with stencil.",
   "keywords": [
     "rating component",

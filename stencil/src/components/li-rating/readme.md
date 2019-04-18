@@ -18,14 +18,14 @@
 | `svgIconPath` | `svg-icon-path` |             | `any`    | `''`        |
 | `textIcon`    | `text-icon`     |             | `any`    | `'★'`       |
 | `totalIcons`  | `total-icons`   |             | `any`    | `5`         |
-| `value`       | `value`         |             | `number` | `0`         |
+| `value`       | `value`         |             | `string` | `'0'`       |
 
 
 ## Events
 
-| Event            | Description | Type                |
-| ---------------- | ----------- | ------------------- |
-| `onChangeRating` |             | `CustomEvent<void>` |
+| Event   | Description | Type                |
+| ------- | ----------- | ------------------- |
+| `input` |             | `CustomEvent<void>` |
 
 
 ## Methods
