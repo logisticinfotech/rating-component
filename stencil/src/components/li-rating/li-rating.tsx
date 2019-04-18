@@ -17,7 +17,7 @@ export class LiRating {
     }) value: string = '0';
     @Watch('value')
     watchHandlerForValue(newValue: string, oldValue: boolean) {
-        console.log('color old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('value old : ' + oldValue + ' New value: ' + newValue);
         this.value = newValue;
         this.refresh();
     }
@@ -27,21 +27,21 @@ export class LiRating {
     @Watch('color')
     watchHandlerForColor(newValue: string, oldValue: string) {
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
-        console.log('color old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('color old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() fillMode: string = 'precise';
     @Watch('fillMode')
     watchHandlerForFillMode(newValue: string, oldValue: string) {
-        console.log('fillMode old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('fillMode old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() opacity: any = 0.3;
     @Watch('opacity')
     watchHandlerForOpacity(newValue: number, oldValue: number) {
-        console.log('opacity old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('opacity old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
@@ -49,21 +49,21 @@ export class LiRating {
     @Watch('totalIcons')
     watchHandlerForTotalIcons(newValue: number, oldValue: number) {
         this.maxRating = (Number(this.totalIcons));
-        console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() svgIconPath: any = '';
     @Watch('svgIconPath')
     watchHandlerForSvgIconPath(newValue: string, oldValue: string) {
-        console.log('svgIconPath old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('svgIconPath old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() textIcon: any = '★';
     @Watch('textIcon')
     watchHandlerForTextIcon(newValue: string, oldValue: string) {
-        console.log('textIcon old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('textIcon old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
@@ -72,21 +72,21 @@ export class LiRating {
     @Watch('strokeColor')
     watchHandlerForStrokeColor(newValue: string, oldValue: string) {
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
-        console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() strokeWidth: string = '0';
     @Watch('strokeWidth')
     watchHandlerForStrokeWidth(newValue: string, oldValue: string) {
-        console.log('strokeWidth old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('strokeWidth old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() fontSize: any = 45;
     @Watch('fontSize')
     watchHandlerForFontSize(newValue: number, oldValue: number) {
-        console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
         this.refresh();
     }
 
@@ -213,7 +213,7 @@ export class LiRating {
     // This method calls when user clicks on li-rating and getting for value of rating.
     changeRating(e) {
         this.value = this.calculateCurrentRating(e).toString();
-        console.log('VALUE =>', this.value);
+        // console.log('VALUE =>', this.value);
         this.input.emit();
     }
 
