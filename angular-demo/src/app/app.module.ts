@@ -7,13 +7,15 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { TemplateDrivenFormComponent } from './template-driven-form/template-driven-form.component';
 import { HomeComponent } from './home/home.component';
+import { CustomeRatingMeterComponent } from './custome-rating-meter/custome-rating-meter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReactiveFormComponent,
     TemplateDrivenFormComponent,
-    HomeComponent
+    HomeComponent,
+    CustomeRatingMeterComponent
   ],
   imports: [
     BrowserModule,
