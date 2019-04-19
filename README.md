@@ -4,5 +4,5 @@ You can find step by step guide for installtion and options for set icons in thi
 
 
 # Preview
-
+[](https://www.logisticinfotech.com/wp-content/uploads/2019/04/logisticinfotech-rating-component.gif)
 
