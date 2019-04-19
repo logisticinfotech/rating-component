@@ -126,15 +126,13 @@ export class LiRating {
     }
 
     refresh() {
-        if (!this.fontAwesomeSvgIcon) {
-            if (this.svgIconPath) {
-                this.getSvgFromPath();
-            } else if (this.textIcon) {
-                this.setTextIcon();
-            }
-        } else {
-            this.setSvgString(this.fontAwesomeSvgIcon);
-        }
+      if (this.textIcon) {
+        this.setTextIcon();
+      } else if (this.svgIconPath) {
+        this.getSvgFromPath();
+      } else if (this.fontAwesomeSvgIcon) {
+        this.setSvgString(this.fontAwesomeSvgIcon);
+      }
     }
 
     // This method used for set FontAwesome SVG image.
@@ -183,6 +181,8 @@ export class LiRating {
             if (this.readyState == 4 && this.status == 200) {
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+                // var svgElmtMain = document.createElement(this.responseText);
                 svgElmtMain.setAttribute("color", self.colorInside)
 
                 svgElmtMain.innerHTML = this.responseText;

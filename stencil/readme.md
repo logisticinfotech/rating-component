@@ -1,7 +1,7 @@
 
 # Logisticinfotech Rating Component
 
-Please check this blog for documentation [this link](https://logisticinfotech.com/blog/li-rating-component)
+Please check this blog for documentation [this link](https://www.logisticinfotech.com/blog/custom-rating-component/)
 
 Here is how it looks
 

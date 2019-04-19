@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
 
-declare var window;
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+
+// import * as LiRating from 'LiRating';
+
+declare const window: any;
+declare const LiRating: any;
 
 @Component({
   selector: 'app-custome-rating-meter',
@@ -31,6 +35,9 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   svgPath = '';
 
+
+  @ViewChild('myRatingElement') myRatingElement: ElementRef;
+
   constructor() { }
 
   ngOnInit() {
@@ -43,18 +50,24 @@ export class CustomeRatingMeterComponent implements OnInit {
   }
 
   onChangeValue(elementID) {
-    const newValue = document.getElementById(elementID).value;
+    const ele = document.getElementById(elementID) as  HTMLInputElement;
+    const newValue = parseInt(ele.value);
     // console.log('onChangeValue method calls : ' + this.totalIcons);
     if (elementID === 'totalIconRange') {
       this.totalIcons = newValue;
+
     } else if (elementID === 'valueRange') {
       this.value = newValue;
+
     } else if (elementID === 'fontSizeRange') {
       this.fontSize = newValue;
+
     } else if (elementID === 'opacityRange') {
-      this.opacity = newValue;
+      this.opacity = Number(ele.value);
+
     } else if (elementID === 'strokeWidthRange') {
       this.strokeWidth = newValue;
+
     }
     this.changeExampleString();
   }
@@ -84,18 +97,27 @@ export class CustomeRatingMeterComponent implements OnInit {
     // console.log('onChangeTextIcon method calls : ', event.target.value);
     this.textIcon = event.target.value;
     this.changeExampleString();
+    this.svgIconPath = '';
+
   }
 
   onClickSetSVG() {
     // console.log('onClickSetSVG method calls =>', event.target.value);
     if (this.isSvgFilePath) {
+      this.textIcon = '';
+
       this.svgPath = this.fwIconName;
       this.svgIconPath = this.fwIconName;
+
     } else if (this.isFontAwesomeIconName) {
       const fwIconSvg = window.FontAwesome.icon({
         prefix: this.fwPrefix,
         iconName: this.fwIconName
       }).html[0];
+
+      this.textIcon = '';
+      this.svgIconPath = '';
+      // this.myRatingElement.setSvgString(fwIconSvg);
       const liRating = document.getElementById('liRating');
       liRating.componentOnReady().then(() => {
         liRating.setSvgString(fwIconSvg);
