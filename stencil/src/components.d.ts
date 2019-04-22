@@ -14,6 +14,7 @@ export namespace Components {
 
   interface LiRating {
     'color': string;
+    'fillColor': string;
     'fillMode': string;
     'fontSize': any;
     'opacity': any;
@@ -27,6 +28,7 @@ export namespace Components {
   }
   interface LiRatingAttributes extends StencilHTMLAttributes {
     'color'?: string;
+    'fillColor'?: string;
     'fillMode'?: string;
     'fontSize'?: any;
     'onInput'?: (event: CustomEvent) => void;

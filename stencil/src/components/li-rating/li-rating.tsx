@@ -17,31 +17,29 @@ export class LiRating {
     }) value: string = '0';
     @Watch('value')
     watchHandlerForValue(newValue: string) {
-        // console.log('value old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('value New value: ' + newValue);
         this.value = newValue;
         this.refresh();
     }
 
-    // This properties used in all Icon.
-    @Prop() color: string = 'black';
-    @Watch('color')
-    watchHandlerForColor(newValue: string) {
-        this.colorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
-        // console.log('color old : ' + oldValue + ' New value: ' + newValue);
+    @Prop() svgIconPath: any = '';
+    @Watch('svgIconPath')
+    watchHandlerForSvgIconPath() {
+        // console.log('svgIconPath');
+        this.refresh();
+    }
+
+    @Prop() textIcon: any = '★';
+    @Watch('textIcon')
+    watchHandlerForTextIcon() {
+        // console.log('textIcon');
         this.refresh();
     }
 
     @Prop() fillMode: string = 'precise';
     @Watch('fillMode')
     watchHandlerForFillMode() {
-        // console.log('fillMode old : ' + oldValue + ' New value: ' + newValue);
-        this.refresh();
-    }
-
-    @Prop() opacity: any = 0.3;
-    @Watch('opacity')
-    watchHandlerForOpacity() {
-        // console.log('opacity old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('fillMode');
         this.refresh();
     }
 
@@ -49,44 +47,52 @@ export class LiRating {
     @Watch('totalIcons')
     watchHandlerForTotalIcons(newValue: number) {
         this.maxRating = (Number(newValue));
-        // console.log('totalIcons old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('totalIcons New value: ' + newValue);
         this.refresh();
     }
 
-    @Prop() svgIconPath: any = '';
-    @Watch('svgIconPath')
-    watchHandlerForSvgIconPath() {
-        // console.log('svgIconPath old : ' + oldValue + ' New value: ' + newValue);
+    @Prop() opacity: any = 0.3;
+    @Watch('opacity')
+    watchHandlerForOpacity() {
+        // console.log('opacity');
         this.refresh();
     }
 
-    @Prop() textIcon: any = '★';
-    @Watch('textIcon')
-    watchHandlerForTextIcon() {
-        // console.log('textIcon old : ' + oldValue + ' New value: ' + newValue);
+    @Prop() color: string = 'black';
+    @Watch('color')
+    watchHandlerForColor(newValue: string) {
+        this.colorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
+        // console.log('color New value: ' + newValue);
         this.refresh();
     }
 
-    // This properties is only use for TextIcon.
+    @Prop() fillColor: string = 'black';
+    @Watch('fillColor')
+    watchHandlerForFillColor(newValue: string) {
+        this.fillColorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
+        // console.log('fill New value: ' + newValue);
+        this.refresh();
+    }
+
     @Prop() strokeColor: string = 'black';
     @Watch('strokeColor')
     watchHandlerForStrokeColor(newValue: string) {
         this.strokeColorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
-        // console.log('strokeColor old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('strokeColor New value: ' + newValue);
         this.refresh();
     }
 
     @Prop() strokeWidth: string = '0';
     @Watch('strokeWidth')
     watchHandlerForStrokeWidth() {
-        // console.log('strokeWidth old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('strokeWidth');
         this.refresh();
     }
 
     @Prop() fontSize: any = 45;
     @Watch('fontSize')
     watchHandlerForFontSize() {
-        // console.log('fontSize old : ' + oldValue + ' New value: ' + newValue);
+        // console.log('fontSize');
         this.refresh();
     }
 
@@ -94,6 +100,7 @@ export class LiRating {
     @State() maxRating: number = 100;
     @State() fontAwesomeSvgIcon: string;
     @State() colorInside: string;
+    @State() fillColorInside: string;
     @State() strokeColorInside: string;
 
 
@@ -117,6 +124,7 @@ export class LiRating {
         // console.log('component will load calls');
         this.maxRating = (Number(this.totalIcons));
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
+        this.fillColorInside = this.color.includes("#") ? this.convertHexToRGB(this.fillColor) : this.fillColor;
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
     }
 
@@ -126,13 +134,13 @@ export class LiRating {
     }
 
     refresh() {
-      if (this.textIcon) {
-        this.setTextIcon();
-      } else if (this.svgIconPath) {
-        this.getSvgFromPath();
-      } else if (this.fontAwesomeSvgIcon) {
-        this.setSvgString(this.fontAwesomeSvgIcon);
-      }
+        if (this.textIcon) {
+            this.setTextIcon();
+        } else if (this.svgIconPath) {
+            this.getSvgFromPath();
+        } else if (this.fontAwesomeSvgIcon) {
+            this.setSvgString(this.fontAwesomeSvgIcon);
+        }
     }
 
     // This method used for set FontAwesome SVG image.
@@ -143,11 +151,11 @@ export class LiRating {
         var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
         svgElmtMain.setAttribute("color", this.colorInside);
-        svgElmtMain.setAttribute("fill", this.colorInside);
+        svgElmtMain.setAttribute("fill", this.fillColorInside);
         svgElmtMain.setAttribute("stroke", this.strokeColorInside);
         svgElmtMain.setAttribute("stroke-width", this.strokeWidth);
 
-        svgElmtMain.innerHTML = svgHtml;
+        svgElmtMain.innerHTML = this.getMinifiedString(svgHtml);
 
         this.setElementAsSelectedUnselected(svgElmtMain);
     }
@@ -161,7 +169,8 @@ export class LiRating {
         var svgText = document.createElement("text");
         svgText.setAttribute("x", "50%");
         svgText.setAttribute("y", "65%");
-        svgText.setAttribute("fill", this.colorInside);
+        svgText.setAttribute("color", this.colorInside);
+        svgText.setAttribute("fill", this.fillColorInside);
         svgText.setAttribute("stroke", this.strokeColorInside);
         svgText.setAttribute("stroke-width", this.strokeWidth);
         svgText.setAttribute("font-size", this.fontSize);
@@ -184,24 +193,26 @@ export class LiRating {
             if (this.readyState == 4 && this.status == 200) {
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-
-                svgElmtMain.setAttribute("fill", self.colorInside);
+                svgElmtMain.setAttribute("fill", self.fillColorInside);
                 svgElmtMain.setAttribute("color", self.colorInside);
                 svgElmtMain.setAttribute("stroke", self.strokeColorInside);
                 svgElmtMain.setAttribute("stroke-width", self.strokeWidth);
 
-                let sgvText = this.responseText.replace(/(\r\n|\n|\r)/gm, ""));
-
-                const regex = /fill="(.*?)"/gm;
-                sgvText = sgvText.replace(regex, "");
-
-                svgElmtMain.innerHTML = sgvText;
+                svgElmtMain.innerHTML = self.getMinifiedString(this.responseText);
 
                 self.setElementAsSelectedUnselected(svgElmtMain);
             }
         }
         fileRequest.open("GET", this.svgIconPath, true);
         fileRequest.send();
+    }
+
+    getMinifiedString(myString) {
+        let sgvText = myString.replace(/(\r\n|\n|\r)/gm, ""));
+        const regex = /fill="(.*?)"/gm;
+        sgvText = sgvText.replace(regex, "");
+        
+        return sgvText;
     }
 
     // This common funcation is used for set SVG as selected or unselected SVG.

@@ -1,10 +1,7 @@
 
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 
-// import * as LiRating from 'LiRating';
-
 declare const window: any;
-declare const LiRating: any;
 
 @Component({
   selector: 'app-custome-rating-meter',
@@ -16,7 +13,8 @@ export class CustomeRatingMeterComponent implements OnInit {
   value = 0;
   textIcon = '★';
   fontSize = 50;
-  color = '#FF99FF';
+  color = '#FFA224';
+  fillColor = '#FF99FF';
   totalIcons = 5;
   fillMode = 'precise';
   opacity = 0.3;
@@ -35,9 +33,6 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   svgPath = '';
 
-
-  @ViewChild('myRatingElement') myRatingElement: ElementRef;
-
   constructor() { }
 
   ngOnInit() {
@@ -50,14 +45,14 @@ export class CustomeRatingMeterComponent implements OnInit {
   }
 
   onChangeValue(elementID) {
-    const ele = document.getElementById(elementID) as  HTMLInputElement;
+    const ele = document.getElementById(elementID) as HTMLInputElement;
     const newValue = parseInt(ele.value);
     // console.log('onChangeValue method calls : ' + this.totalIcons);
     if (elementID === 'totalIconRange') {
       this.totalIcons = newValue;
 
     } else if (elementID === 'valueRange') {
-      this.value = newValue;
+      this.value = Number(ele.value);
 
     } else if (elementID === 'fontSizeRange') {
       this.fontSize = newValue;
@@ -98,7 +93,6 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.textIcon = event.target.value;
     this.changeExampleString();
     this.svgIconPath = '';
-
   }
 
   onClickSetSVG() {
@@ -117,7 +111,6 @@ export class CustomeRatingMeterComponent implements OnInit {
 
       this.textIcon = '';
       this.svgIconPath = '';
-      // this.myRatingElement.setSvgString(fwIconSvg);
       const liRating = document.getElementById('liRating');
       liRating.componentOnReady().then(() => {
         liRating.setSvgString(fwIconSvg);
@@ -140,6 +133,12 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.changeExampleString();
   }
 
+  onChangeFillColor(event) {
+    console.log('onChangeFillColor method calls : ', event.target.value);
+    this.fillColor = event.target.value;
+    this.changeExampleString();
+  }
+
   onChangeStrokeColor(event) {
     // console.log('onChangeStrokeColor method calls : ', event.target.value);
     this.strokeColor = event.target.value;
@@ -148,17 +147,17 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   changeExampleString() {
     // console.log('changeExampleString method calls');
-    const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="' + this.value + '" fontSize="' + this.fontSize + '" ';
-    const two = 'color="' + this.color + '" totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
+    const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="' + this.value + '" fontSize="' + this.fontSize + '" color="';
+    const two = this.color + '" fillColor="' + this.fillColor + '" totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
     const three = 'opacity="' + this.opacity + '" strokeColor="' + this.strokeColor + '" strokeWidth="' + this.strokeWidth + '"';
     const four = '></li-rating>';
     const textIcon = ' textIcon="' + this.textIcon + '" ';
     const svgIconPath = ' svgIconPath="' + this.svgPath + '" ';
 
     if (this.isTextIcon) {
-      this.exampleElement = one + textIcon + two + three + four;
+      this.exampleElement = one + two + textIcon + three + four;
     } else if (this.isSvgFilePath) {
-      this.exampleElement = one + svgIconPath + two + three + four;
+      this.exampleElement = one + two + svgIconPath + three + four;
     } else {
       this.exampleElement = one + two + three + four;
     }

@@ -4,8 +4,8 @@
     <div class="rating-holder">
       <div class="rating-meter" style="width: 500px; height: 100%;">
         <li-rating #myRatingElement ngDefaultControl id="liRating" [value]="value" [textIcon]="textIcon"
-          [fontSize]="fontSize" [color]="color" [totalIcons]="totalIcons" [fillMode]="fillMode" [opacity]="opacity"
-          [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
+          [fontSize]="fontSize" [color]="color" [fillColor]="fillColor" [totalIcons]="totalIcons" [fillMode]="fillMode"
+          [opacity]="opacity" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
           (input)="onChageRating($event)"></li-rating>
       </div>
     </div>
@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <div class="box-wrapper">
+  <div class="box-color-wrapper">
     <div class="color-container pl-3 pr-3">
       <p>Change Color:</p>
       <div>
@@ -133,10 +133,17 @@
     </div>
 
     <div class="color-container pl-3 pr-3">
+      <p>Change Fill Color:</p>
+      <div>
+        <input checked type="color" name="fillColor" [value]="fillColor" (change)="onChangeFillColor($event)">
+        <span class="pl-2">{{fillColor}}</span>
+      </div>
+    </div>
+
+    <div class="color-container pl-3 pr-3">
       <p>Change Stroke Color:</p>
       <div>
-        <input checked type="color" name="strokeColor" [value]="strokeColor" (change)="onChangeStrokeColor($event)"
-          >
+        <input checked type="color" name="strokeColor" [value]="strokeColor" (change)="onChangeStrokeColor($event)">
         <span class="pl-2">{{strokeColor}}</span>
       </div>
     </div>
