@@ -93,7 +93,7 @@
       <div class="sliider-meter">
         <span class="font-weight-bold blue-text mr-2">0</span>
         <input type="range" min="0" max="10" step="1" [value]="strokeWidth" class="slider" id="strokeWidthRange"
-          (input)="onChangeValue('strokeWidthRange')" [disabled]="!isTextIcon">
+          (input)="onChangeValue('strokeWidthRange')">
         <span class="font-weight-bold blue-text ml-2">10</span>
       </div>
     </div>
@@ -136,7 +136,7 @@
       <p>Change Stroke Color:</p>
       <div>
         <input checked type="color" name="strokeColor" [value]="strokeColor" (change)="onChangeStrokeColor($event)"
-          [disabled]="!isTextIcon">
+          >
         <span class="pl-2">{{strokeColor}}</span>
       </div>
     </div>

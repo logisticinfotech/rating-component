@@ -142,7 +142,10 @@ export class LiRating {
         this.fontAwesomeSvgIcon = svgHtml;
         var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svgElmtMain.setAttribute("color", this.colorInside)
+        svgElmtMain.setAttribute("color", this.colorInside);
+        svgElmtMain.setAttribute("fill", this.colorInside);
+        svgElmtMain.setAttribute("stroke", this.strokeColorInside);
+        svgElmtMain.setAttribute("stroke-width", this.strokeWidth);
 
         svgElmtMain.innerHTML = svgHtml;
 
@@ -182,10 +185,17 @@ export class LiRating {
                 var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
 
-                // var svgElmtMain = document.createElement(this.responseText);
-                svgElmtMain.setAttribute("color", self.colorInside)
+                svgElmtMain.setAttribute("fill", self.colorInside);
+                svgElmtMain.setAttribute("color", self.colorInside);
+                svgElmtMain.setAttribute("stroke", self.strokeColorInside);
+                svgElmtMain.setAttribute("stroke-width", self.strokeWidth);
 
-                svgElmtMain.innerHTML = this.responseText;
+                let sgvText = this.responseText.replace(/(\r\n|\n|\r)/gm, ""));
+
+                const regex = /fill="(.*?)"/gm;
+                sgvText = sgvText.replace(regex, "");
+
+                svgElmtMain.innerHTML = sgvText;
 
                 self.setElementAsSelectedUnselected(svgElmtMain);
             }
