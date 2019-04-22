@@ -16,7 +16,7 @@
 | `strokeColor` | `stroke-color`  |             | `string` | `'black'`   |
 | `strokeWidth` | `stroke-width`  |             | `string` | `'0'`       |
 | `svgIconPath` | `svg-icon-path` |             | `any`    | `''`        |
-| `textIcon`    | `text-icon`     |             | `any`    | `'★'`       |
+| `textIcon`    | `text-icon`     |             | `any`    | `''`        |
 | `totalIcons`  | `total-icons`   |             | `any`    | `5`         |
 | `value`       | `value`         |             | `string` | `'0'`       |
 
