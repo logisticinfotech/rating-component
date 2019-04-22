@@ -29,7 +29,7 @@ export class CustomeRatingMeterComponent implements OnInit {
   isFontAwesomeIconName = false;
   placeHolderForIcon;
   fwPrefix;
-  fwIconName;
+  fwIconName = 'assets/DIGIDOWN034-welded-svg.svg';
 
   svgPath = '';
 
@@ -133,11 +133,11 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.changeExampleString();
   }
 
-  onChangeFillColor(event) {
-    console.log('onChangeFillColor method calls : ', event.target.value);
-    this.fillColor = event.target.value;
-    this.changeExampleString();
-  }
+  // onChangeFillColor(event) {
+  //   console.log('onChangeFillColor method calls : ', event.target.value);
+  //   this.fillColor = event.target.value;
+  //   this.changeExampleString();
+  // }
 
   onChangeStrokeColor(event) {
     // console.log('onChangeStrokeColor method calls : ', event.target.value);
@@ -147,8 +147,10 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   changeExampleString() {
     // console.log('changeExampleString method calls');
-    const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="' + this.value + '" fontSize="' + this.fontSize + '" color="';
-    const two = this.color + '" fillColor="' + this.fillColor + '" totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
+    const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="'
+      + this.value + '" fontSize="' + this.fontSize + '" color="' +  this.color + '" ';
+    const two = '" totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
+    // 'fillColor="' + this.fillColor +
     const three = 'opacity="' + this.opacity + '" strokeColor="' + this.strokeColor + '" strokeWidth="' + this.strokeWidth + '"';
     const four = '></li-rating>';
     const textIcon = ' textIcon="' + this.textIcon + '" ';
@@ -168,3 +170,4 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.ratingValueOne = event.target.value;
   }
 }
+

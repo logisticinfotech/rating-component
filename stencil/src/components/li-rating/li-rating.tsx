@@ -22,14 +22,14 @@ export class LiRating {
         this.refresh();
     }
 
-    @Prop() svgIconPath: any = '';
+    @Prop({ mutable: true }) svgIconPath: any = '';
     @Watch('svgIconPath')
     watchHandlerForSvgIconPath() {
         // console.log('svgIconPath');
         this.refresh();
     }
 
-    @Prop() textIcon: any = '★';
+    @Prop({ mutable: true }) textIcon: any = '';
     @Watch('textIcon')
     watchHandlerForTextIcon() {
         // console.log('textIcon');
@@ -66,13 +66,13 @@ export class LiRating {
         this.refresh();
     }
 
-    @Prop() fillColor: string = 'black';
-    @Watch('fillColor')
-    watchHandlerForFillColor(newValue: string) {
-        this.fillColorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
-        // console.log('fill New value: ' + newValue);
-        this.refresh();
-    }
+    // @Prop() fillColor: string = 'black';
+    // @Watch('fillColor')
+    // watchHandlerForFillColor(newValue: string) {
+    //     this.fillColorInside = newValue.includes("#") ? this.convertHexToRGB(newValue) : newValue;
+    //     // console.log('fill New value: ' + newValue);
+    //     this.refresh();
+    // }
 
     @Prop() strokeColor: string = 'black';
     @Watch('strokeColor')
@@ -100,7 +100,7 @@ export class LiRating {
     @State() maxRating: number = 100;
     @State() fontAwesomeSvgIcon: string;
     @State() colorInside: string;
-    @State() fillColorInside: string;
+    // @State() fillColorInside: string;
     @State() strokeColorInside: string;
 
 
@@ -124,22 +124,33 @@ export class LiRating {
         // console.log('component will load calls');
         this.maxRating = (Number(this.totalIcons));
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
-        this.fillColorInside = this.color.includes("#") ? this.convertHexToRGB(this.fillColor) : this.fillColor;
+        // this.fillColorInside = this.fillColor.includes("#") ? this.convertHexToRGB(this.fillColor) : this.fillColor;
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
+
+
     }
 
     componentDidLoad() {
+        if (!this.textIcon && !this.svgIconPath) {
+          this.textIcon = '★';
+          // By setting testIcon it calls refresh from change event automatically
+          // So added condition to not call refresh two times here.
+        } else {
+          this.refresh();
+        }
         // console.log('component did load calls');
-        this.refresh();
     }
 
     refresh() {
         if (this.textIcon) {
             this.setTextIcon();
+            // console.log('refresh setTextIcon ' + this.textIcon);
         } else if (this.svgIconPath) {
             this.getSvgFromPath();
+            // console.log('refresh getSvgFromPath');
         } else if (this.fontAwesomeSvgIcon) {
             this.setSvgString(this.fontAwesomeSvgIcon);
+            // console.log('refresh setSvgString');
         }
     }
 
@@ -147,13 +158,11 @@ export class LiRating {
     @Method()
     setSvgString(svgHtml) {
         // console.log('setSvgString Method calls', svgHtml);
+        this.textIcon = '';
+        this.svgIconPath = '';
         this.fontAwesomeSvgIcon = svgHtml;
-        var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-        svgElmtMain.setAttribute("color", this.colorInside);
-        svgElmtMain.setAttribute("fill", this.fillColorInside);
-        svgElmtMain.setAttribute("stroke", this.strokeColorInside);
-        svgElmtMain.setAttribute("stroke-width", this.strokeWidth);
+
+        var svgElmtMain = this.getBlankSvg();
 
         svgElmtMain.innerHTML = this.getMinifiedString(svgHtml);
 
@@ -163,16 +172,11 @@ export class LiRating {
     // This methos used fot TEXT set in SVG.
     setTextIcon() {
         // console.log('setTextIcon Method calls', textIcon);
-        var svgElmt = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svgElmt.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        var svgElmt = this.getBlankSvg();
 
         var svgText = document.createElement("text");
         svgText.setAttribute("x", "50%");
         svgText.setAttribute("y", "65%");
-        svgText.setAttribute("color", this.colorInside);
-        svgText.setAttribute("fill", this.fillColorInside);
-        svgText.setAttribute("stroke", this.strokeColorInside);
-        svgText.setAttribute("stroke-width", this.strokeWidth);
         svgText.setAttribute("font-size", this.fontSize);
         svgText.setAttribute("text-anchor", "middle");
         svgText.setAttribute("dominant-baseline", "middle");
@@ -191,12 +195,7 @@ export class LiRating {
         var self = this;
         fileRequest.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                var svgElmtMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svgElmtMain.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-                svgElmtMain.setAttribute("fill", self.fillColorInside);
-                svgElmtMain.setAttribute("color", self.colorInside);
-                svgElmtMain.setAttribute("stroke", self.strokeColorInside);
-                svgElmtMain.setAttribute("stroke-width", self.strokeWidth);
+                var svgElmtMain = self.getBlankSvg();
 
                 svgElmtMain.innerHTML = self.getMinifiedString(this.responseText);
 
@@ -207,9 +206,26 @@ export class LiRating {
         fileRequest.send();
     }
 
+    getBlankSvg() {
+      var mySvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      mySvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      // mySvg.setAttribute("color", this.colorInside);
+      mySvg.setAttribute("fill", this.colorInside);
+      mySvg.setAttribute("stroke", this.strokeColorInside);
+      mySvg.setAttribute("stroke-width", this.strokeWidth);
+
+      return mySvg;
+    }
+
     getMinifiedString(myString) {
         let sgvText = myString.replace(/(\r\n|\n|\r)/gm, "");
-        const regex = /fill="(.*?)"/gm;
+        let regex = /fill="(.*?)"/gm;
+        sgvText = sgvText.replace(regex, "");
+
+        regex = /height="(.*?)"/gm;
+        sgvText = sgvText.replace(regex, "");
+
+        regex = /width="(.*?)"/gm;
         sgvText = sgvText.replace(regex, "");
 
         return sgvText;
