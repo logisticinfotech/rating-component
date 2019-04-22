@@ -208,10 +208,10 @@ export class LiRating {
     }
 
     getMinifiedString(myString) {
-        let sgvText = myString.replace(/(\r\n|\n|\r)/gm, ""));
+        let sgvText = myString.replace(/(\r\n|\n|\r)/gm, "");
         const regex = /fill="(.*?)"/gm;
         sgvText = sgvText.replace(regex, "");
-        
+
         return sgvText;
     }
 
