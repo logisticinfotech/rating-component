@@ -4,12 +4,13 @@
     <div class="rating-holder">
       <div class="rating-meter" style="width: 500px; height: 100%;">
         <li-rating #myRatingElement ngDefaultControl id="liRating" [value]="value" [textIcon]="textIcon"
-          [fontSize]="fontSize" [color]="color" [fillColor]="fillColor" [totalIcons]="totalIcons" [fillMode]="fillMode"
-          [opacity]="opacity" [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
+          [fontSize]="fontSize" [color]="color" [totalIcons]="totalIcons" [fillMode]="fillMode" [opacity]="opacity"
+          [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
           (input)="onChageRating($event)"></li-rating>
       </div>
     </div>
   </div>
+  <!-- [fillColor]="fillColor"  -->
 
   <div>
     <div class="radio-button-container pl-3 pr-3">
@@ -41,9 +42,14 @@
         <span class="mr-3 ml-2">♬</span>
         <input type="radio" name="textIcon" value="❖" (change)="onChangeTextIcon($event)">
         <span class="mr-3 ml-2">❖</span>
+
+        <input type="radio" name="textIcon" value="" (change)="onChangeTextIcon($event)">
+        <span class="mr-3 ml-2">Other
+          <input id="otherText" (input)="onChangeText($event)" *ngIf="isOtherTextIcon">
+        </span>
       </div>
 
-      <div class="left-space" *ngIf="!isTextIcon">
+      <div class=" left-space" *ngIf="!isTextIcon">
         <div class="input-group mb-2">
           <input type="text" class="form-control" [(ngModel)]="fwPrefix" *ngIf="isFontAwesomeIconName"
             placeholder="Please enter font-awesome prefix here">
@@ -123,7 +129,7 @@
     </div>
   </div>
 
-  <div class="box-color-wrapper">
+  <div class="box-wrapper">
     <div class="color-container pl-3 pr-3">
       <p>Change Color:</p>
       <div>

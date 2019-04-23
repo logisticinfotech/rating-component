@@ -126,8 +126,6 @@ export class LiRating {
         this.colorInside = this.color.includes("#") ? this.convertHexToRGB(this.color) : this.color;
         // this.fillColorInside = this.fillColor.includes("#") ? this.convertHexToRGB(this.fillColor) : this.fillColor;
         this.strokeColorInside = this.strokeColor.includes("#") ? this.convertHexToRGB(this.strokeColor) : this.strokeColor;
-
-
     }
 
     componentDidLoad() {
@@ -206,6 +204,7 @@ export class LiRating {
         fileRequest.send();
     }
 
+    // This method gives blank SVG.
     getBlankSvg() {
       var mySvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       mySvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
@@ -217,6 +216,7 @@ export class LiRating {
       return mySvg;
     }
 
+    // This method gives the minified string of SVG.
     getMinifiedString(myString) {
         let sgvText = myString.replace(/(\r\n|\n|\r)/gm, "");
         let regex = /fill="(.*?)"/gm;

@@ -14,7 +14,7 @@ export class CustomeRatingMeterComponent implements OnInit {
   textIcon = '★';
   fontSize = 50;
   color = '#FFA224';
-  fillColor = '#FF99FF';
+  // fillColor = '#FF99FF';
   totalIcons = 5;
   fillMode = 'precise';
   opacity = 0.3;
@@ -25,6 +25,7 @@ export class CustomeRatingMeterComponent implements OnInit {
   exampleElement = '';
 
   isTextIcon = true;
+  isOtherTextIcon = false;
   isSvgFilePath = false;
   isFontAwesomeIconName = false;
   placeHolderForIcon;
@@ -90,7 +91,15 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   onChangeTextIcon(event) {
     // console.log('onChangeTextIcon method calls : ', event.target.value);
+    this.isOtherTextIcon = event.target.value === '' ? true : false;
     this.textIcon = event.target.value;
+    this.changeExampleString();
+    this.svgIconPath = '';
+  }
+
+  onChangeText($event) {
+    // console.log('onChangeText method calls : ', (event.target.value).substr(0, 1));
+    this.textIcon = (event.target.value).substr(0, 1);
     this.changeExampleString();
     this.svgIconPath = '';
   }
@@ -148,8 +157,8 @@ export class CustomeRatingMeterComponent implements OnInit {
   changeExampleString() {
     // console.log('changeExampleString method calls');
     const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="'
-      + this.value + '" fontSize="' + this.fontSize + '" color="' +  this.color + '" ';
-    const two = '" totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
+      + this.value + '" fontSize="' + this.fontSize + '" color="' + this.color + '" ';
+    const two = 'totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
     // 'fillColor="' + this.fillColor +
     const three = 'opacity="' + this.opacity + '" strokeColor="' + this.strokeColor + '" strokeWidth="' + this.strokeWidth + '"';
     const four = '></li-rating>';
@@ -170,4 +179,3 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.ratingValueOne = event.target.value;
   }
 }
-
