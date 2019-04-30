@@ -208,7 +208,7 @@ export class LiRating {
     getBlankSvg() {
       var mySvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       mySvg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      // mySvg.setAttribute("color", this.colorInside);
+      mySvg.setAttribute("color", this.colorInside);
       mySvg.setAttribute("fill", this.colorInside);
       mySvg.setAttribute("stroke", this.strokeColorInside);
       mySvg.setAttribute("stroke-width", this.strokeWidth);

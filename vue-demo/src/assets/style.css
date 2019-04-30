@@ -1,0 +1,68 @@
+.main-title {
+    background-color: #333A40;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 4px 0px 4px black;
+}
+
+.content-wrapper {
+    margin: 50px;
+}
+
+.box-wrapper {
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-gap: 60px;
+}
+
+.li-rating-wrapper {
+    width: 100%;
+    height: 115px;
+    margin: 5px;
+    padding: 10px;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.li-rating-wrapper label {
+    font-family: sans-serif;
+    color: lightslategray;
+    float: left;
+}
+
+.rating-holder {
+    width: 80%;
+    height: 62px;
+}
+
+.width-height-one {
+    width: 150px;
+    height: 100%;
+}
+
+.width-height-two {
+    width: 190px;
+    height: 100%;
+}
+
+.width-height-three {
+    width: 220px;
+    height: 100%;
+}
+
+.width-height-four {
+    width: 250px;
+    height: 100%;
+}
+
+.width-height-five {
+    width: 290px;
+    height: 100%;
+}
+
+.width-height-six {
+    width: 320px;
+    height: 100%;
+}
