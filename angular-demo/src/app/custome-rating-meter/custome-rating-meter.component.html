@@ -3,14 +3,13 @@
   <div class="li-rating-wrapper mt-4 pb-4">
     <div class="rating-holder">
       <div class="rating-meter" style="width: 500px; height: 100%;">
-        <li-rating #myRatingElement ngDefaultControl id="liRating" [value]="value" [textIcon]="textIcon"
+        <li-rating #myRatingElement ngDefaultControl [value]="value" [textIcon]="textIcon"
           [fontSize]="fontSize" [color]="color" [totalIcons]="totalIcons" [fillMode]="fillMode" [opacity]="opacity"
           [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
           (input)="onChageRating($event)"></li-rating>
       </div>
     </div>
   </div>
-  <!-- [fillColor]="fillColor"  -->
 
   <div>
     <div class="radio-button-container pl-3 pr-3">

@@ -10,11 +10,12 @@ declare const window: any;
 })
 export class CustomeRatingMeterComponent implements OnInit {
 
+  @ViewChild('myRatingElement') myRatingElement: ElementRef;
+
   value = 0;
   textIcon = '★';
   fontSize = 50;
   color = '#FFA224';
-  // fillColor = '#FF99FF';
   totalIcons = 5;
   fillMode = 'precise';
   opacity = 0.3;
@@ -30,7 +31,7 @@ export class CustomeRatingMeterComponent implements OnInit {
   isFontAwesomeIconName = false;
   placeHolderForIcon;
   fwPrefix;
-  fwIconName = 'assets/DIGIDOWN034-welded-svg.svg';
+  fwIconName = '';
 
   svgPath = '';
 
@@ -47,7 +48,7 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   onChangeValue(elementID) {
     const ele = document.getElementById(elementID) as HTMLInputElement;
-    const newValue = parseInt(ele.value);
+    const newValue = parseInt(ele.value, 10);
     // console.log('onChangeValue method calls : ' + this.totalIcons);
     if (elementID === 'totalIconRange') {
       this.totalIcons = newValue;
@@ -97,14 +98,14 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.svgIconPath = '';
   }
 
-  onChangeText($event) {
+  onChangeText(event) {
     // console.log('onChangeText method calls : ', (event.target.value).substr(0, 1));
     this.textIcon = (event.target.value).substr(0, 1);
     this.changeExampleString();
     this.svgIconPath = '';
   }
 
-  onClickSetSVG() {
+  async onClickSetSVG() {
     // console.log('onClickSetSVG method calls =>', event.target.value);
     if (this.isSvgFilePath) {
       this.textIcon = '';
@@ -120,10 +121,13 @@ export class CustomeRatingMeterComponent implements OnInit {
 
       this.textIcon = '';
       this.svgIconPath = '';
-      const liRating = document.getElementById('liRating');
-      liRating.componentOnReady().then(() => {
-        liRating.setSvgString(fwIconSvg);
-      });
+
+      await this.myRatingElement.nativeElement.setSvgString(fwIconSvg);
+
+      // const liRating = document.getElementById('liRating');
+      // liRating.componentOnReady().then(() => {
+      //   liRating.setSvgString(fwIconSvg);
+      // });
     }
     this.fwIconName = '';
     this.fwPrefix = '';
@@ -142,12 +146,6 @@ export class CustomeRatingMeterComponent implements OnInit {
     this.changeExampleString();
   }
 
-  // onChangeFillColor(event) {
-  //   console.log('onChangeFillColor method calls : ', event.target.value);
-  //   this.fillColor = event.target.value;
-  //   this.changeExampleString();
-  // }
-
   onChangeStrokeColor(event) {
     // console.log('onChangeStrokeColor method calls : ', event.target.value);
     this.strokeColor = event.target.value;
@@ -159,7 +157,6 @@ export class CustomeRatingMeterComponent implements OnInit {
     const one = '<li-rating ngDefaultControl [(ngModel)]="ratingValue" value="'
       + this.value + '" fontSize="' + this.fontSize + '" color="' + this.color + '" ';
     const two = 'totalIcons="' + this.totalIcons + '" fillMode="' + this.fillMode + '" ';
-    // 'fillColor="' + this.fillColor +
     const three = 'opacity="' + this.opacity + '" strokeColor="' + this.strokeColor + '" strokeWidth="' + this.strokeWidth + '"';
     const four = '></li-rating>';
     const textIcon = ' textIcon="' + this.textIcon + '" ';
@@ -172,10 +169,5 @@ export class CustomeRatingMeterComponent implements OnInit {
     } else {
       this.exampleElement = one + two + three + four;
     }
-  }
-
-  onChangeRating(event) {
-    // console.log('onChangeRating method calls : ' ,event.target.value);
-    this.ratingValueOne = event.target.value;
   }
 }
