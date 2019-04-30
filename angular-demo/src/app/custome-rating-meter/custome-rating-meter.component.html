@@ -1,67 +1,64 @@
-<div class="container">
+<div class="container rating-component-generator">
 
   <div class="li-rating-wrapper mt-4 pb-4">
-    <div class="rating-holder">
-      <div class="rating-meter" style="width: 500px; height: 100%;">
-        <li-rating #myRatingElement ngDefaultControl id="liRating" [value]="value" [textIcon]="textIcon"
-          [fontSize]="fontSize" [color]="color" [totalIcons]="totalIcons" [fillMode]="fillMode" [opacity]="opacity"
-          [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
-          (input)="onChageRating($event)"></li-rating>
-      </div>
+    <div class="rating-meter">
+      <li-rating #myRatingElement ngDefaultControl id="liRating" [value]="value" [textIcon]="textIcon"
+        [fontSize]="fontSize" [color]="color" [totalIcons]="totalIcons" [fillMode]="fillMode" [opacity]="opacity"
+        [strokeColor]="strokeColor" [strokeWidth]="strokeWidth" [svgIconPath]="svgIconPath"
+        (input)="onChageRating($event)"></li-rating>
     </div>
   </div>
   <!-- [fillColor]="fillColor"  -->
 
-  <div>
-    <div class="radio-button-container pl-3 pr-3">
+  <div class="radio-button-container pl-3 pr-3">
 
-      <div class="d-flex align-items-center mb-2">
-        <p class="mb-1 mr-3">Change Icon:</p>
-        <input checked type="radio" name="radio" value="textIcon" (change)="onChangeIcon($event)">
-        <span class="mr-3 ml-2">Text Icon</span>
-        <input type="radio" name="radio" value="svgPath" (change)="onChangeIcon($event)">
-        <span class="mr-3 ml-2">SVG from Path</span>
-        <input type="radio" name="radio" value="fontAwesomeIcon" (change)="onChangeIcon($event)">
-        <span class="mr-3 ml-2">FontAwesome Icons Name</span>
-      </div>
+    <div class="d-flex align-items-center mb-2">
+      <p class="mb-1 mr-3">Change Icon:</p>
+      <input checked type="radio" name="radio" value="textIcon" (change)="onChangeIcon($event)">
+      <span class="mr-3 ml-2">Text Icon</span>
+      <input type="radio" name="radio" value="svgPath" (change)="onChangeIcon($event)">
+      <span class="mr-3 ml-2">SVG from Path</span>
+      <input type="radio" name="radio" value="fontAwesomeIcon" (change)="onChangeIcon($event)">
+      <span class="mr-3 ml-2">FontAwesome Icons Name</span>
+    </div>
 
-      <div class="left-space" *ngIf="isTextIcon">
-        <input checked type="radio" name="textIcon" value="★" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">Default</span>
-        <input type="radio" name="textIcon" value="♠" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">♠</span>
-        <input type="radio" name="textIcon" value="♣" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">♣</span>
-        <input type="radio" name="textIcon" value="♥" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">♥</span>
-        <input type="radio" name="textIcon" value="♦" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">♦</span>
-        <input type="radio" name="textIcon" value="☻" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">☻</span>
-        <input type="radio" name="textIcon" value="♬" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">♬</span>
-        <input type="radio" name="textIcon" value="❖" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">❖</span>
+    <div class="left-space" *ngIf="isTextIcon">
+      <input checked type="radio" name="textIcon" value="★" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">Default</span>
+      <input type="radio" name="textIcon" value="♠" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">♠</span>
+      <input type="radio" name="textIcon" value="♣" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">♣</span>
+      <input type="radio" name="textIcon" value="♥" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">♥</span>
+      <input type="radio" name="textIcon" value="♦" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">♦</span>
+      <input type="radio" name="textIcon" value="☻" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">☻</span>
+      <input type="radio" name="textIcon" value="♬" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">♬</span>
+      <input type="radio" name="textIcon" value="❖" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">❖</span>
 
-        <input type="radio" name="textIcon" value="" (change)="onChangeTextIcon($event)">
-        <span class="mr-3 ml-2">Other
-          <input id="otherText" (input)="onChangeText($event)" *ngIf="isOtherTextIcon">
-        </span>
-      </div>
+      <input type="radio" name="textIcon" value="" (change)="onChangeTextIcon($event)">
+      <span class="mr-3 ml-2">Other
+        <input id="otherText" (input)="onChangeText($event)" *ngIf="isOtherTextIcon">
+      </span>
+    </div>
 
-      <div class=" left-space" *ngIf="!isTextIcon">
-        <div class="input-group mb-2">
-          <input type="text" class="form-control" [(ngModel)]="fwPrefix" *ngIf="isFontAwesomeIconName"
-            placeholder="Please enter font-awesome prefix here">
-          <input type="text" class="form-control" [(ngModel)]="fwIconName" placeholder="{{placeHolderForIcon}}">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-success" (click)="onClickSetSVG()">Apply</button>
-          </div>
+    <div class=" left-space" *ngIf="!isTextIcon">
+      <div class="input-group mb-2">
+        <input type="text" class="form-control" [(ngModel)]="fwPrefix" *ngIf="isFontAwesomeIconName"
+          placeholder="Please enter font-awesome prefix here">
+        <input type="text" class="form-control" [(ngModel)]="fwIconName" placeholder="{{placeHolderForIcon}}">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-success" (click)="onClickSetSVG()">Apply</button>
         </div>
       </div>
     </div>
-
   </div>
+
+
 
   <div class="box-wrapper mt-4">
     <div class="slidecontainer pl-3 pr-3">
@@ -103,10 +100,34 @@
         <span class="font-weight-bold blue-text ml-2">10</span>
       </div>
     </div>
-  </div>
 
-  <div class="box-wrapper">
-    <div class="radio-button-container pl-3 pr-3">
+    <div class="slidecontainer pl-3 pr-3">
+      <p class="mb-1">Change Opacity :</p>
+      <div class="sliider-meter">
+        <span class="font-weight-bold blue-text mr-2">0</span>
+        <input type="range" min="0" max="1" step="0.1" [value]="opacity" class="slider" id="opacityRange"
+          (input)="onChangeValue('opacityRange')">
+        <span class="font-weight-bold blue-text ml-2">1</span>
+      </div>
+    </div>
+
+    <div class="slidecontainer pl-3 pr-3">
+      <p class="mb-1">Change Color:</p>
+      <div>
+        <input checked type="color" name="color" [value]="color" (change)="onChangeColor($event)">
+        <span class="pl-2">{{color}}</span>
+      </div>
+    </div>
+
+    <div class="slidecontainer pl-3 pr-3">
+      <p class="mb-1">Change Stroke Color:</p>
+      <div>
+        <input checked type="color" name="strokeColor" [value]="strokeColor" (change)="onChangeStrokeColor($event)">
+        <span class="pl-2">{{strokeColor}}</span>
+      </div>
+    </div>
+
+    <div class="slidecontainer pl-3 pr-3">
       <p class="mb-1">Change Fill Mode :</p>
       <div>
         <input checked type="radio" name="fillMode" value="precise" (change)="onChangeFillMode($event)">
@@ -117,42 +138,6 @@
         <span class="mr-3 ml-2">Full</span>
       </div>
     </div>
-
-    <div class="slidecontainer p-3">
-      <p class="mb-1">Change Opacity :</p>
-      <div class="sliider-meter">
-        <span class="font-weight-bold blue-text mr-2">0</span>
-        <input type="range" min="0" max="1" step="0.1" [value]="opacity" class="slider" id="opacityRange"
-          (input)="onChangeValue('opacityRange')">
-        <span class="font-weight-bold blue-text ml-2">1</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="box-wrapper">
-    <div class="color-container pl-3 pr-3">
-      <p>Change Color:</p>
-      <div>
-        <input checked type="color" name="color" [value]="color" (change)="onChangeColor($event)">
-        <span class="pl-2">{{color}}</span>
-      </div>
-    </div>
-
-    <!-- <div class="color-container pl-3 pr-3">
-      <p>Change Fill Color:</p>
-      <div>
-        <input checked type="color" name="fillColor" [value]="fillColor" (change)="onChangeFillColor($event)">
-        <span class="pl-2">{{fillColor}}</span>
-      </div>
-    </div> -->
-
-    <div class="color-container pl-3 pr-3">
-      <p>Change Stroke Color:</p>
-      <div>
-        <input checked type="color" name="strokeColor" [value]="strokeColor" (change)="onChangeStrokeColor($event)">
-        <span class="pl-2">{{strokeColor}}</span>
-      </div>
-    </div>
   </div>
 
   <div class="card mt-4 mb-4 ">
@@ -160,7 +145,7 @@
       Example :
     </div>
     <div class="card-body p-3">
-      <p>{{exampleElement}}</p>
+      <p class="font-weight-bold">{{exampleElement}}</p>
     </div>
   </div>
 </div>

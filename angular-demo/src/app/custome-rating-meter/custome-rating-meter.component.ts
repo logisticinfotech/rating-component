@@ -1,5 +1,7 @@
 
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import '@logisticinfotech/rating-component';
 
 declare const window: any;
 
@@ -11,8 +13,8 @@ declare const window: any;
 export class CustomeRatingMeterComponent implements OnInit {
 
   value = 0;
-  textIcon = '★';
-  fontSize = 50;
+  textIcon = '♥';
+  fontSize = 70;
   color = '#FFA224';
   // fillColor = '#FF99FF';
   totalIcons = 5;
@@ -99,7 +101,7 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   onChangeText($event) {
     // console.log('onChangeText method calls : ', (event.target.value).substr(0, 1));
-    this.textIcon = (event.target.value).substr(0, 1);
+    this.textIcon = (<HTMLInputElement>event.target).value.substr(0, 1);
     this.changeExampleString();
     this.svgIconPath = '';
   }
@@ -118,9 +120,10 @@ export class CustomeRatingMeterComponent implements OnInit {
         iconName: this.fwIconName
       }).html[0];
 
+
       this.textIcon = '';
       this.svgIconPath = '';
-      const liRating = document.getElementById('liRating');
+      const liRating: any = document.getElementById('liRating');
       liRating.componentOnReady().then(() => {
         liRating.setSvgString(fwIconSvg);
       });
@@ -176,6 +179,6 @@ export class CustomeRatingMeterComponent implements OnInit {
 
   onChangeRating(event) {
     // console.log('onChangeRating method calls : ' ,event.target.value);
-    this.ratingValueOne = event.target.value;
+    // this.ratingValueOne = event.target.value;
   }
 }

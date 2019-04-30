@@ -1,13 +1,18 @@
 :host {
   .tital-wrapper {
     text-align: center;
-    background-color: #333A40;
-
-    label {
-      color: #fff;
-      padding: 5px;
+    border-bottom: 1px solid #333A40;
+    img {
+      // float: left;
+      margin-top: 10px;
+      width: 150px;
+    }
+    h1 {
+      // float: right;
       font-size: 28px;
+      padding: 5px;
       font-family: serif;
+      color: #333A40;
     }
   }
 }
