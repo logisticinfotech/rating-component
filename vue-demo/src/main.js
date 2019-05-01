@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 
 
-// import { defineCustomElements } from '@logisticinfotech/rating-component/dist/loader';
-// defineCustomElements(window); 
+import { defineCustomElements } from '@logisticinfotech/rating-component/dist/loader';
+defineCustomElements(window); 
 
 Vue.config.productionTip = false;
 

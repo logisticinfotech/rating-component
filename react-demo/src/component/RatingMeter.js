@@ -3,26 +3,53 @@ import './RatingMeter.css';
 import smilySVG from '../assets/smily.svg';
 import grinHearts from '../assets/grin-hearts.svg';
 
-
 export default class RatingMeter extends React.Component {
     
+    liRatingFontAwesome = React.createRef();
+
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
         // This code is use for getting svg from fontAwesome icon name
+        // const smileBeam = window.FontAwesome.icon({
+        //     prefix: 'fas',
+        //     iconName: 'smile-beam'
+        // })
+        // var svgHtml = smileBeam.html[0];
+        // var liRating: any = document.getElementById('liRatingFontAwesome');
+        // // var liRating = this.refs.liRatingFontAwesome;
+        // console.log('hdskjsa' , liRating);
+
+        this.setSVG();
+
+        // liRating.componentOnReady().then(() => {
+        //     liRating.setSvgString(svgHtml);
+        // });
+    }   
+
+    setSVG() {
         const smileBeam = window.FontAwesome.icon({
             prefix: 'fas',
             iconName: 'smile-beam'
         })
         var svgHtml = smileBeam.html[0];
-        var liRating = document.getElementById('liRatingFontAwesome');
+        // var liRating: any = document.getElementById('liRatingFontAwesome');
         
-        liRating.componentOnReady().then(() => {
-            liRating.setSvgString(svgHtml);
-        });
-    }   
+        const liRating = this.liRatingFontAwesome;
+        console.log('component' , liRating );
+        console.log('component current' , liRating.current);
+        
+        
+        
+        // document.addEventListener("DOMContentLoaded", function(event) {
+        //     console.log("DOM fully loaded and parsed");
+        // });
+        // liRating.componentOnReady().then(() => {
+            // liRating.setSvgString(svgHtml);
+        // });
+    }
 
     render() {
         return (
@@ -36,7 +63,7 @@ export default class RatingMeter extends React.Component {
                             <label>Default li-rating component :</label>
                             <div class="rating-holder">
                                 <div class="width-height-one">
-                                    <li-rating font-size="45" total-icons="3" stroke-color="#FF66E5" stroke-width="1"
+                                    <li-rating font-size="45"  total-icons="3" stroke-color="#FF66E5" stroke-width="1"
                                         color="#FF99FF">
                                     </li-rating>
                                 </div>
@@ -108,7 +135,8 @@ export default class RatingMeter extends React.Component {
                             <label>Font-awesome SVG icon with color :</label>
                             <div class="rating-holder">
                                 <div class="width-height-four">
-                                    <li-rating id="liRatingFontAwesome" total-icons="7" color="rgb(0, 153, 0)">
+                                {/* ref="liRatingFontAwesome"  ref={this.textInput} */}
+                                    <li-rating ref={this.liRatingFontAwesome} total-icons="7" color="rgb(0, 153, 0)">
                                     </li-rating>
                                 </div>
                             </div>
