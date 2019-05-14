@@ -145,9 +145,9 @@ export default {
 
     var liRating = document.getElementById("liRatingFontAwesome");
 
-    liRating.componentOnReady().then(() => {
+    setTimeout(() => {
       liRating.setSvgString(smileBeam);
-    });
+    }, 100);
   }
 };
 </script>
