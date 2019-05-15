@@ -18,7 +18,7 @@ export default class RatingMeter extends React.Component {
         var liRatings = document.getElementById("liRatingFontAwesome");
         setTimeout(() => {
             liRatings.setSvgString(svgHtml);
-        }, 100);
+        }, 1000);
     }
 
     render() {

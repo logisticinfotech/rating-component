@@ -88,7 +88,7 @@
             <label>Font-awesome SVG icon with color :</label>
             <div class="rating-holder">
                 <div class="width-height-four">
-                    <li-rating id="liRatingFontAwesome" total-icons="7" color="rgb(0, 153, 0)">
+                    <li-rating id="liRatingFontAwesome" v-on:input="onChangeratingValue($event)" total-icons="7" color="rgb(0, 153, 0)">
                     </li-rating>
                 </div>
             </div>
@@ -147,7 +147,13 @@ export default {
 
     setTimeout(() => {
       liRating.setSvgString(smileBeam);
-    }, 100);
+    }, 1000);
+  },
+
+  methods: {
+    onChangeratingValue: function(e) {
+      console.log("EVENT CALLS", e.target.value);
+    }
   }
 };
 </script>
