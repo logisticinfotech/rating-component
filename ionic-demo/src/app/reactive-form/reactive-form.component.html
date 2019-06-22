@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      Reactive Form
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-content>
+      <form [formGroup]="reactiveForm" (submit)="onClickSubmit()">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label>Name :</ion-label>
+              <ion-item>
+                <ion-input type="text" class="form-control" formControlName="name" placeholder="Please enter name">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Mobile Number :</ion-label>
+              <ion-item>
+                <ion-input type="text" class="form-control" formControlName="mobile_number"
+                  placeholder="Please enter mobile number">
+                </ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-label>Rate :</ion-label>
+              <div class="form-group" style="width: 200px; height: 100%;">
+                <li-rating ngDefaultControl formControlName="rate" color="#D8A309"></li-rating>
+              </div>
+            </ion-col>
+          </ion-row>
+
+          <ion-row style="padding-top: 30px">
+            <ion-col>
+              <button ion-button type="submit" class="btn btn-outline-success" [disabled]="reactiveForm.invalid">Submit
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button type="submit" class="btn btn-outline-info" (click)="resetForm()">Reset</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
